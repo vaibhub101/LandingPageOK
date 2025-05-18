@@ -1,5 +1,5 @@
 import React from 'react';
-import { Crown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const RoyalFounder = () => {
   return (
@@ -10,11 +10,23 @@ const RoyalFounder = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-block p-4 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full mb-6">
-            <Crown size={32} className="text-white" />
-          </div>
-          <h2 className="font-heading text-3xl md:text-4xl mb-4 text-gold-600 uppercase">Royal Founder Membership Programme</h2>
-          <p className="text-xl text-maroon-700">Join the Tapasvi Mandala: Become a Royal Founder Member</p>
+          <motion.div 
+            className="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden flex items-center justify-center bg-transparent"
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            <img
+              src="/bgremflower.png"
+              alt="Decorative Flower"
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+          <h2 className="font-heading text-3xl md:text-4xl mb-4 text-gold-600 uppercase">TAPASVI MANDALA ROYAL FOUNDER MEMBERSHIP</h2>
+          <p className="text-xl text-maroon-700">Become a Royal Founder Member</p>
           <div className="w-24 h-1 bg-gold-600 mx-auto mt-6"></div>
         </div>
 
@@ -38,19 +50,19 @@ It is a heartfelt offering to the world—and a divine return to your true self.
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="text-gold-500 font-bold text-lg">✦</span>
-                  <span className="text-maroon-700">Priority Booking for all retreats and workshops</span>
+                  <span className="text-maroon-700">Priority Booking</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-gold-500 font-bold text-lg">✦</span>
-                  <span className="text-maroon-700">Exclusive Founder Discounts on all services and products</span>
+                  <span className="text-maroon-700">Exclusive Founder Discounts</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-gold-500 font-bold text-lg">✦</span>
-                  <span className="text-maroon-700">Annual Personalized Wellness Consultation</span>
+                  <span className="text-maroon-700">Personalised privileges</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-gold-500 font-bold text-lg">✦</span>
-                  <span className="text-maroon-700">Tailored Touches that honor your founding role in our community</span>
+                  <span className="text-maroon-700">Recognition in Our Living Legacy</span>
                 </li>
               </ul>
             </div>

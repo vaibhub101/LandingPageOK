@@ -12,63 +12,63 @@ const WellnessDimensions = () => {
 
   const dimensions = [
     {
-      icon: <Leaf className="h-6 w-6 text-teal-400" />,
+      icon: <Leaf className="h-6 w-6 text-gold-600" />,
       title: "Physical Wellness",
       description: "Reclaim your body with our specialized physical wellness programs.",
       items: ["Detox", "Weight Management", "Pain Management", "Therapeutic Yoga", "Body Cleansing"],
       image: "https://images.pexels.com/photos/8795582/pexels-photo-8795582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Heart className="h-6 w-6 text-teal-400" />,
+      icon: <Heart className="h-6 w-6 text-gold-600" />,
       title: "Emotional & Mental Wellness",
       description: "Heal, express, and transform your emotional landscape.",
       items: ["Stress Management", "Anxiety & Depression Management", "Calm Mind Programme", "Trauma Relief", "Emotional Release"],
       image: "https://images.pexels.com/photos/9577189/pexels-photo-9577189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Shield className="h-6 w-6 text-teal-400" />,
+      icon: <Shield className="h-6 w-6 text-gold-600" />,
       title: "Immune & Biological Wellness",
       description: "Empower your body's defense systems and optimize biological functions.",
       items: ["Hormonal Balance", "Immune Boost", "Gut Healing", "Auto-immune Conditions", "Metabolic Reset"],
       image: "https://images.pexels.com/photos/5480052/pexels-photo-5480052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Flame className="h-6 w-6 text-teal-400" />,
+      icon: <Flame className="h-6 w-6 text-gold-600" />,
       title: "Spiritual Wellness",
       description: "Reunite with the sacred dimensions of your being.",
       items: ["Spiritual Balance", "Energy Healing", "Chakra Balancing", "Rituals", "Sacred Healing"],
       image: "https://images.pexels.com/photos/11435059/pexels-photo-11435059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Mountain className="h-6 w-6 text-teal-400" />,
+      icon: <Mountain className="h-6 w-6 text-gold-600" />,
       title: "Lifestyle & Preventive Wellness",
       description: "Craft a way of life that promotes ongoing wellness and prevents disease.",
       items: ["Corporate Wellness Programme", "Digital Detox", "Sleep Enhancement", "Lifestyle Diseases", "Anti-Aging"],
       image: "https://images.pexels.com/photos/16791298/pexels-photo-16791298/free-photo-of-juice-with-drinking-straw-and-ice.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Users className="h-6 w-6 text-teal-400" />,
+      icon: <Users className="h-6 w-6 text-gold-600" />,
       title: "Social Wellness",
       description: "Building meaningful connections and healthy relationships.",
       items: ["Couple's healing", "Family Bonding", "Social Intelligence", "Conscious Relationships", "Conscious Parenting"],
       image: "https://images.pexels.com/photos/30318143/pexels-photo-30318143/free-photo-of-romantic-couple-with-coffee-in-vancouver-cafe.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Wind className="h-6 w-6 text-teal-400" />,
+      icon: <Wind className="h-6 w-6 text-gold-600" />,
       title: "Environmental Wellness",
       description: "Let nature be your healer as you reconnect with the earth.",
       items: ["Reflexology paths", "Forest Bathing", "Barefoot Walking", "Nature Meditation", "Garden Therapy"],
       image: "https://images.pexels.com/photos/16338316/pexels-photo-16338316/free-photo-of-stream-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Briefcase className="h-6 w-6 text-teal-400" />,
+      icon: <Briefcase className="h-6 w-6 text-gold-600" />,
       title: "Financial Wellness",
       description: "Financial wellness is feeling secure, balanced, and in control of your money.",
       items: ["Budgeting", "Investing", "Debt Management", "Savings Plan", "Financial Literacy"],
       image: "https://images.pexels.com/photos/6775160/pexels-photo-6775160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
-      icon: <Briefcase className="h-6 w-6 text-teal-400" />,
+      icon: <Briefcase className="h-6 w-6 text-gold-600" />,
       title: "Corporate Wellness",
       description: "Peak performance through holistic well-being for professionals.",
       items: ["Stress detox for executives", "Leadership Wellness", "Team Bonding", "Performance Enhancement", "Workplace Wellness"],
@@ -83,8 +83,8 @@ const WellnessDimensions = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const scrollSpeed = 2; // Pixels per frame
-    const scrollInterval = 20; // Milliseconds between frames
+    const scrollSpeed = 3; // Pixels per frame
+    const scrollInterval = 30; // Milliseconds between frames
 
     const autoScroll = setInterval(() => {
       if (!isDragging && container) {

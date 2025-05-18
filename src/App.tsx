@@ -6,7 +6,6 @@ import SanthigiriOrg from './components/SanthigiriOrg';
 import RoyalFounder from './components/RoyalFounder';
 import WellnessMandala from './components/WellnessMandala';
 import WellnessDimensions from './components/WellnessDimensions';
-import WellnessExperiences from './components/WellnessExperiences';
 import SpecialPrograms from './components/SpecialPrograms';
 import MembershipTiers from './components/MembershipTiers';
 import MembershipUsage from './components/MembershipUsage';
@@ -15,7 +14,7 @@ import Quotations from './components/Quotations';
 import Trainers from './components/Trainers';
 import FinalMessage from './components/FinalMessage';
 import Footer from './components/Footer';
-import PhotoCollage from './components/PhotoCollage';
+// import PhotoCollage from './components/PhotoCollage';
 
 function App() {
   return (
@@ -34,12 +33,11 @@ function App() {
           <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-maroon-200 to-transparent opacity-30"></div>
           <Hero />
           <About />
-          <PhotoCollage />
+          
           <SanthigiriOrg />
           <RoyalFounder />
           <WellnessMandala />
           <WellnessDimensions />
-          <WellnessExperiences />
           <SpecialPrograms />
           <MembershipTiers />
           <MembershipUsage />

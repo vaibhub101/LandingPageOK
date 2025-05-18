@@ -34,10 +34,17 @@ const slides = [
 
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setActiveSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 300);
+      }, 300);
     }, 6000);
     return () => clearInterval(interval);
   }, []);
@@ -48,24 +55,26 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden" id="home">
+    <section className="relative h-screen w-full overflow-hidden bg-beige-50" id="home">
       {/* Carousel */}
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${
+            className={`absolute inset-0 transition-all duration-300 ease-in-out transform ${
               activeSlide === index
                 ? 'opacity-100 translate-x-0 z-10'
                 : 'opacity-0 translate-x-full z-0'
-            }`}
+            } ${isTransitioning ? 'bg-beige-100' : ''}`}
           >
             {slide.type === 'video' ? (
               <video
                 autoPlay
                 muted
                 loop
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-cover transition-opacity duration-300 ${
+                  isTransitioning ? 'opacity-0' : 'opacity-100'
+                }`}
               >
                 <source src={slide.src} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -74,14 +83,16 @@ const Hero = () => {
               <img
                 src={slide.src}
                 alt={slide.alt}
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-cover transition-opacity duration-300 ${
+                  isTransitioning ? 'opacity-0' : 'opacity-100'
+                }`}
               />
             )}
           </div>
         ))}
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-950/90 via-primary-950/50 to-primary-950/30 z-20"></div>
+        {/* Overlay - Using beige gradient for consistency */}
+        <div className="absolute inset-0 bg-gradient-to-t from-beige-900/80 via-beige-800/40 to-transparent z-20"></div>
       </div>
 
       {/* Carousel Indicators */}
@@ -101,30 +112,28 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      {/* Content */}
-<div className="relative z-30 h-full flex flex-col justify-center items-center px-4 text-center">
-  <div key={activeSlide} className="max-w-4xl mx-auto animate-fade-in transition-opacity duration-1200">
-    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-4 text-earth-100 leading-tight">
-      <span className="block">{slides[activeSlide].heading}</span>
-      <span className="block text-gold-300">{slides[activeSlide].subheading}</span>
-    </h1>
+      <div className="relative z-30 h-full flex flex-col justify-center items-center px-4 text-center">
+        <div key={activeSlide} className="max-w-4xl mx-auto animate-fade-in transition-opacity duration-1200">
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-4 text-earth-100 leading-tight">
+            <span className="block">{slides[activeSlide].heading}</span>
+            <span className="block text-gold-300">{slides[activeSlide].subheading}</span>
+          </h1>
 
-    <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-earth-200">
-      {slides[activeSlide].description}
-    </p>
-  </div>
-  
-    <div className="flex flex-col sm:flex-row justify-center gap-4">
-      <a
-        href="#membership"
-        className="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-      >
-        Explore Royal Founder Membership
-      </a>
-    </div>
-  
-</div>
-
+          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-earth-200">
+            {slides[activeSlide].description}
+          </p>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#membership"
+            className="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
+            Explore Royal Founder Membership
+          </a>
+        </div>
+      
+      </div>
 
       {/* Scroll Down Indicator */}
       <button

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 
-const Footer = ({ logoUrl }: { logoUrl?: string }) => {
-  const finalLogo = logoUrl || 'https://omkalyanam.com/wp-content/uploads/2023/03/Logo-Final-04.png';
+const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-beige-50 to-beige-100">
       <div className="container mx-auto px-4 py-12">
@@ -10,15 +9,15 @@ const Footer = ({ logoUrl }: { logoUrl?: string }) => {
           <div className="md:col-span-1">
             <div className="flex items-center mb-4">
               <img 
-                src={finalLogo} 
+                src="public\newlogoOMK.jpg"
                 alt="Om Kalyanam Santhigiri Logo" 
-                className="h-16"
+                className="h-16 object-contain"
               />
             </div>
             <p className="text-maroon-700 mb-4">
               A sacred initiative inspired by Santhigiri Ashram, dedicated to holistic well-being and inner transformation.
             </p>
-            <p className="text-gold-600">65 years of trust</p>
+            <p className="text-gold-600">67 years of trust</p>
           </div>
 
           <div className="md:col-span-1">

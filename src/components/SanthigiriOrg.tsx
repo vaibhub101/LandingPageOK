@@ -1,27 +1,28 @@
 import React from 'react';
 import { Building2, Award, Globe2, Users2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const SanthigiriOrg = () => {
   const achievements = [
     {
       title: "Global Presence",
       description: "International centers in Dubai, Singapore, and Florida (USA)",
-      icon: <Globe2 className="w-6 h-6 text-teal-400" />
+      icon: <Globe2 className="w-6 h-6 text-gold-600" />
     },
     {
       title: "Healthcare Excellence",
       description: "250-bed Ayurveda & Siddha specialty hospital in South India",
-      icon: <Building2 className="w-6 h-6 text-teal-400" />
+      icon: <Building2 className="w-6 h-6 text-gold-600" />
     },
     {
       title: "Employment Impact",
       description: "Direct employment for over 6000 people",
-      icon: <Users2 className="w-6 h-6 text-teal-400" />
+      icon: <Users2 className="w-6 h-6 text-gold-600" />
     },
     {
       title: "Product Range",
       description: "400+ proprietary Ayurveda & Siddha medicines",
-      icon: <Award className="w-6 h-6 text-teal-400" />
+      icon: <Award className="w-6 h-6 text-gold-600" />
     }
   ];
 
@@ -87,6 +88,21 @@ const SanthigiriOrg = () => {
       <div className="container mx-auto px-4">
         {/* Main Introduction */}
         <div className="max-w-4xl mx-auto text-center mb-16">
+          <motion.div 
+            className="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden flex items-center justify-center bg-transparent"
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            <img
+              src="/bgremflower.png"
+              alt="Decorative Flower"
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
           <h2 className="font-heading text-3xl md:text-4xl mb-6 text-gold-600">
             Santhigiri Health and Research Organisation
           </h2>
@@ -154,9 +170,9 @@ const SanthigiriOrg = () => {
         {/* Legacy Section */}
         <div className="bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-xl p-8 mb-16">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-heading text-gold-600 mb-4">Welcome to Santhigiri: 65+ Years of Trust and Healing</h3>
+            <h3 className="text-2xl font-heading text-gold-600 mb-4">Welcome to Santhigiri: 67 Years of Trust and Healing</h3>
             <p className="text-lg text-maroon-700">
-              For years, Santhigiri has been at the forefront of holistic wellness and spiritual growth. With a legacy rooted in Ayurvedic education, research, and healthcare, Santhigiri is committed to providing transformative healing through the fusion of tradition and modern science.
+              For 65+ years, Santhigiri has been at the forefront of holistic wellness and spiritual growth. With a legacy rooted in Ayurvedic education, research, and healthcare, Santhigiri is committed to providing transformative healing through the fusion of tradition and modern science.
             </p>
           </div>
         </div>
