@@ -148,22 +148,13 @@ const SanthigiriOrg = () => {
         </div>
 
         {/* Ayurveda Leadership Section */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div className="relative">
-            <div className="absolute inset-0 scale-90 -rotate-3 border-2 border-gold-500/30 rounded-lg"></div>
-            <div className="relative z-10 overflow-hidden rounded-lg shadow-xl">
-              <img 
-                src="https://www.santhigiriashram.org/images/lotusparnasala.jpg" 
-                alt="Santhigiri Ayurveda Center" 
-                className="w-full h-96 object-cover"
-              />
-            </div>
-          </div>
-          <div>
-            <h3 className="text-2xl font-heading text-gold-600 mb-6">Ayurveda Leadership</h3>
-            <p className="text-lg text-maroon-700 mb-6">
-              Santhigiri pioneers holistic health with Asia's only English-medium Ayurveda education. As South India's top Ayurvedic medicine manufacturer, it offers 400+ Ayurveda and Siddha treatments at its specialty hospital, trains Panchakarma therapists, and crafts authentic products, blending tradition and modernity for global wellness.
-            </p>
+        <div className="flex justify-center items-center mb-16">
+          <div className="relative z-10 overflow-hidden rounded-lg shadow-xl border-4 border-gold-500">
+            <img 
+              src="https://www.santhigiriashram.org/images/lotusparnasala.jpg" 
+              alt="Santhigiri Ayurveda Center" 
+              className="w-full max-w-xl h-96 object-cover"
+            />
           </div>
         </div>
 

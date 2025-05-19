@@ -69,8 +69,8 @@ const Header = () => {
               </li>
             ))}
             <li>
-              <Link
-                to="/enquiry"
+              <a
+                href="#enquiry"
                 className={`text-maroon-700 hover:text-gold-600 transition-all duration-500 ${
                   isVisible 
                     ? 'opacity-100 translate-y-0' 
@@ -82,7 +82,7 @@ const Header = () => {
                 }}
               >
                 Contact
-              </Link>
+              </a>
             </li>
             <li>
               <a
@@ -128,13 +128,13 @@ const Header = () => {
               </li>
             ))}
             <li className="py-2">
-              <Link
-                to="/enquiry"
+              <a
+                href="#enquiry"
                 className="block px-4 text-maroon-700 hover:text-gold-600 transition-colors duration-300"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
-              </Link>
+              </a>
             </li>
             <li className="py-2 px-4">
               <a

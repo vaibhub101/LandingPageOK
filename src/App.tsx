@@ -50,9 +50,9 @@ function App() {
                   <Testimonials />
                   <Quotations />
                   <FinalMessage />
+                  <EnquiryForm />
                 </>
               } />
-              <Route path="/enquiry" element={<EnquiryForm />} />
             </Routes>
             <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-maroon-200 to-transparent opacity-30"></div>
           </main>

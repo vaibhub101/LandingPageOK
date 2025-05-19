@@ -13,7 +13,7 @@ const EnquiryForm = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-beige-50 to-beige-100 py-20">
+    <section id="enquiry" className="min-h-screen flex items-center justify-center bg-gradient-to-b from-beige-50 to-beige-100 py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-lg mx-auto bg-beige-100/90 rounded-2xl shadow-xl p-8 md:p-12 border border-gold-200">
           <motion.div 
