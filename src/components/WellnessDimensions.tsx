@@ -9,6 +9,8 @@ const WellnessDimensions = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   const dimensions = [
     {
@@ -124,9 +126,31 @@ const WellnessDimensions = () => {
     }
   };
 
+  // Touch event handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+  const handleTouchEnd = () => {
+    if (touchStartX !== null && touchEndX !== null) {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && containerRef.current) {
+          containerRef.current.scrollLeft += 320;
+        } else if (containerRef.current) {
+          containerRef.current.scrollLeft -= 320;
+        }
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
   return (
     <section id="dimensions" className="bg-gradient-to-b from-beige-50 to-beige-100 py-16 overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-2 sm:px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-heading text-gold-600 mb-4">
             OM KALYANAM – 9 Dimensions of Transformational Wellness
@@ -140,17 +164,20 @@ const WellnessDimensions = () => {
         {/* Carousel Container */}
         <div
           ref={containerRef}
-          className="flex overflow-x-hidden space-x-6 px-1 cursor-grab active:cursor-grabbing"
+          className="flex overflow-x-auto space-x-4 sm:space-x-6 px-1 cursor-grab active:cursor-grabbing scrollbar-hide"
           onMouseDown={handleMouseDown}
           onMouseLeave={handleMouseLeave}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
         >
           {loopedDimensions.map((dim, index) => (
             <div
               key={index}
-              className="min-w-[300px] max-w-[300px] flex-shrink-0 bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-xl overflow-hidden transition-all duration-500 hover:transform hover:scale-105 hover:[animation-play-state:paused] group"
+              className="min-w-[85vw] max-w-[340px] sm:min-w-[300px] sm:max-w-[300px] flex-shrink-0 bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-xl overflow-hidden transition-all duration-500 hover:transform hover:scale-105 hover:[animation-play-state:paused] group"
             >
               {/* Image Top */}
               <div className="w-full h-48 overflow-hidden">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
@@ -6,6 +6,9 @@ const WellnessMandala = () => {
   const [selectedExperience, setSelectedExperience] = useState<number | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Auto-play effect
   useEffect(() => {
@@ -80,7 +83,7 @@ const WellnessMandala = () => {
       title: 'Therapeutic Food',
       description: 'Nourishment as medicine for body and soul',
       items: ['Sattvic Diet', 'Plant-Based Healing', 'Detox Nutrition', 'Personalized Meal Plans', 'Cooking Workshops'],
-      image: "https://images.pexels.com/photos/3822619/pexels-photo-3822619.jpeg"
+      image: "https://img.freepik.com/free-photo/flat-lay-healthy-immunity-boosting-foods_23-2149211597.jpg?t=st=1747642940~exp=1747646540~hmac=f2a51b176e07dd12315fde5cd0f9af9eb320434dead24f29a37e554a033ffbdb&w=740"
     },
     {
       id: 'rituals',
@@ -143,12 +146,34 @@ const WellnessMandala = () => {
     }
   };
 
+  // Touch event handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+  const handleTouchEnd = () => {
+    if (touchStartX !== null && touchEndX !== null) {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          handleNext();
+        } else {
+          handlePrev();
+        }
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-beige-50 to-beige-100 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,theme(colors.maroon.100/0.1),transparent_70%)] pointer-events-none"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,theme(colors.gold.500/0.1),transparent_70%)] pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-2 sm:px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.div 
             className="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden flex items-center justify-center bg-transparent"
@@ -181,26 +206,30 @@ const WellnessMandala = () => {
         </div>
 
         <div 
-          className="relative h-[600px] perspective-1000 mb-20"
+          className="relative h-[400px] sm:h-[600px] perspective-1000 mb-20"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          ref={carouselRef}
         >
-          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-50 px-4">
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-50 px-2 sm:px-4">
             <button 
               onClick={() => setCurrentIndex((prev) => (prev - 1 + wellnessExperiences.length) % wellnessExperiences.length)}
-              className="p-3 rounded-full bg-gradient-to-r from-gold-600/90 to-gold-700/90 text-white
+              className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-gold-600/90 to-gold-700/90 text-white
                 shadow-[0_2px_10px_rgba(234,179,8,0.2)] hover:shadow-[0_5px_15px_rgba(234,179,8,0.4)]
                 transform hover:scale-110 transition-all duration-300 hover:-translate-x-1"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button 
               onClick={() => setCurrentIndex((prev) => (prev + 1) % wellnessExperiences.length)}
-              className="p-3 rounded-full bg-gradient-to-r from-gold-600/90 to-gold-700/90 text-white
+              className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-gold-600/90 to-gold-700/90 text-white
                 shadow-[0_2px_10px_rgba(234,179,8,0.2)] hover:shadow-[0_5px_15px_rgba(234,179,8,0.4)]
                 transform hover:scale-110 transition-all duration-300 hover:translate-x-1"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
 
@@ -219,7 +248,7 @@ const WellnessMandala = () => {
               return (
                 <motion.div
                   key={experience.id}
-                  className={`absolute w-[600px] h-[400px] rounded-xl overflow-hidden transition-all duration-700 ease-in-out cursor-pointer
+                  className={`absolute w-[90vw] max-w-[340px] sm:w-[600px] sm:max-w-none h-[320px] sm:h-[400px] rounded-xl overflow-hidden transition-all duration-700 ease-in-out cursor-pointer
                     ${isCenter ? 'hover:scale-110' : ''}`}
                   style={{
                     transform: `translateX(${translateX}px) translateZ(${translateZ}px) scale(${scale})`,

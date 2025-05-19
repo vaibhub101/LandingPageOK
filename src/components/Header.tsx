@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,7 +50,7 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
-            {['Home', 'About', 'Wellness', 'Membership', 'Experiences', 'Contact'].map((item, index) => (
+            {['Home', 'About', 'Wellness', 'Membership', 'Experiences'].map((item, index) => (
               <li key={item}>
                 <a
                   href={`#${item.toLowerCase()}`}
@@ -67,6 +68,22 @@ const Header = () => {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                to="/enquiry"
+                className={`text-maroon-700 hover:text-gold-600 transition-all duration-500 ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-4'
+                }`}
+                style={{
+                  transitionDelay: `${5 * 100}ms`,
+                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+              >
+                Contact
+              </Link>
+            </li>
             <li>
               <a
                 href="#membership"
@@ -99,7 +116,7 @@ const Header = () => {
       {mobileMenuOpen && (
         <nav className="md:hidden bg-beige-50/95 backdrop-blur-sm">
           <ul className="flex flex-col py-4">
-            {['Home', 'About', 'Wellness', 'Membership', 'Experiences', 'Contact'].map((item) => (
+            {['Home', 'About', 'Wellness', 'Membership', 'Experiences'].map((item) => (
               <li key={item} className="py-2">
                 <a
                   href={`#${item.toLowerCase()}`}
@@ -110,6 +127,15 @@ const Header = () => {
                 </a>
               </li>
             ))}
+            <li className="py-2">
+              <Link
+                to="/enquiry"
+                className="block px-4 text-maroon-700 hover:text-gold-600 transition-colors duration-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+            </li>
             <li className="py-2 px-4">
               <a
                 href="#membership"
