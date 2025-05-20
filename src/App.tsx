@@ -31,33 +31,33 @@ function App() {
         
         {/* Main content */}
         <div className="relative">
-          <Header />
-          <main>
+      <Header />
+      <main>
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-maroon-200 to-transparent opacity-30"></div>
             <Routes>
               <Route path="/" element={
                 <>
-                  <Hero />
-                  <About />
-                  <SanthigiriOrg />
-                  <RoyalFounder />
+        <Hero />
+        <About />
+        <SanthigiriOrg />
+        <RoyalFounder />
                   <WellnessMandala />
-                  <WellnessDimensions />
-                  <SpecialPrograms />
-                  <MembershipTiers />
-                  <MembershipUsage />
-                  <Trainers />
-                  <Testimonials />
-                  <Quotations />
-                  <FinalMessage />
+        <WellnessDimensions />
+        <SpecialPrograms />
+        <MembershipTiers />
+        <MembershipUsage />
+        <Trainers />
+        <Testimonials />
+        <Quotations />
+        <FinalMessage />
                   <EnquiryForm />
                 </>
               } />
             </Routes>
             <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-maroon-200 to-transparent opacity-30"></div>
-          </main>
-          <Footer />
-        </div>
+      </main>
+      <Footer />
+    </div>
       </div>
     </Router>
   );

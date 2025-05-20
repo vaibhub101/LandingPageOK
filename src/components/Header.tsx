@@ -9,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroSection = document.getElementById('home');
+    const heroSection = document.getElementById('home');
       if (heroSection) {
         const heroHeight = heroSection.offsetHeight;
         const scrollPosition = window.scrollY;

@@ -61,13 +61,13 @@ const Quotations = () => {
                   shadow-[0_0_15px_rgba(234,179,8,0.2)] hover:shadow-[0_0_25px_rgba(234,179,8,0.4)]
                   transition-all duration-300 group-hover:transform group-hover:scale-[1.02]">
                   <div className="absolute -top-6 -left-6 text-gold-600/20 text-[120px] font-serif">
-                    "
-                  </div>
-                  
-                  <div className="relative z-10">
+                  "
+                </div>
+                
+                <div className="relative z-10">
                     <p className="text-lg text-maroon-700 italic mb-4 font-heading">
-                      "{quote.text}"
-                    </p>
+                    "{quote.text}"
+                  </p>
                     <p className="text-gold-600 text-right font-accent">— {quote.author}</p>
                   </div>
                 </div>

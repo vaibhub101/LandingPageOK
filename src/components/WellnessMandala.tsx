@@ -27,70 +27,70 @@ const WellnessMandala = () => {
       title: 'Naturopathy',
       description: 'Harnessing the 5 elements of nature for healing',
       items: ['Therapy (Abdomen & spinal packs)', 'Hydrotherapy', 'Mud Therapy', 'Fasting'],
-      image: "https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg"
+      image: "/images/wellness/naturopathyOM.jpg"
     },
     {
       id: 'ayurveda',
       title: 'Ayurveda',
       description: 'Ancient wisdom for holistic health and balance',
       items: ['Panchakarma', 'Abhyangam', 'Shirodhara', 'Nasyam', 'Pizhichil', 'Njavarakizhi'],
-      image: "https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg"
+      image: "/images/wellness/AyurOM.jpg"
     },
     {
       id: 'yoga',
       title: 'Yoga',
       description: 'Unite body, mind, and spirit through sacred movement',
       items: ['Hatha Yoga', 'Kundalini Yoga', 'Vinyasa Flow', 'Yoga Nidra', 'Partner Yoga'],
-      image: "https://images.pexels.com/photos/3822621/pexels-photo-3822621.jpeg"
+      image: "/images/wellness/yogaOM.jpg"
     },
     {
       id: 'emotional',
       title: 'Emotional & Mental Wellness',
       description: 'Tools for inner harmony and mental clarity',
       items: ['Counseling', 'Art Therapy', 'Music Therapy', 'Inner Child Healing', 'Family Constellation'],
-      image: "https://images.pexels.com/photos/3759658/pexels-photo-3759658.jpeg"
+      image: "/images/wellness/mentalHealth.jpg"
     },
     {
       id: 'meditation',
       title: 'Meditation',
       description: 'Cultivate presence and inner stillness',
       items: ['Guided Meditation', 'Mindfulness', 'Transcendental Meditation', 'Chakra Meditation', 'Walking Meditation'],
-      image: "https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg"
+      image: "/images/wellness/MedOM.jpg"
     },
     {
       id: 'alternative',
       title: 'Alternative Therapies',
       description: 'Innovative approaches to wellness',
       items: ['Acupuncture', 'Acupressure', 'Reiki', 'Pranic Healing', 'Crystal Healing', 'Sound Healing'],
-      image: "https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg"
+      image: "/images/wellness/alternOM.jpg"
     },
     {
       id: 'modern',
       title: 'Modern Therapies',
       description: 'Contemporary techniques for healing',
       items: ['Aqua Therapy', 'Infrared Sauna', 'Hypnotherapy', 'Cognitive Behavioral Therapy', 'NLP'],
-      image: "https://images.pexels.com/photos/3822711/pexels-photo-3822711.jpeg"
+      image: "/images/wellness/modernOM.jpg"
     },
     {
       id: 'spiritual',
-      title: 'Spiritual Practices',
+      title: 'Spiritual Practices and Daily Rituals',
       description: 'Connect with the divine essence within',
       items: ['Havan', 'Puja', 'Guided Spiritual Journeys', 'Sacred Ceremonies', 'Energy Clearing'],
-      image: "https://images.pexels.com/photos/3759661/pexels-photo-3759661.jpeg"
+      image: "/images/wellness/spiritualom.jpg"
     },
     {
       id: 'food',
       title: 'Therapeutic Food',
       description: 'Nourishment as medicine for body and soul',
       items: ['Sattvic Diet', 'Plant-Based Healing', 'Detox Nutrition', 'Personalized Meal Plans', 'Cooking Workshops'],
-      image: "https://img.freepik.com/free-photo/flat-lay-healthy-immunity-boosting-foods_23-2149211597.jpg?t=st=1747642940~exp=1747646540~hmac=f2a51b176e07dd12315fde5cd0f9af9eb320434dead24f29a37e554a033ffbdb&w=740"
+      image: "/images/wellness/theraputic.jpg"
     },
     {
       id: 'rituals',
-      title: 'Daily Rituals',
+      title: 'Environmental healing',
       description: 'Sacred routines to anchor your transformation',
-      items: ['Morning Silence', 'Gratitude Practices', 'Self-Reflection', 'Nature Connection', 'Evening Unwinding'],
-      image: "https://images.pexels.com/photos/3822715/pexels-photo-3822715.jpeg"
+      items: ['Deepens connection with the Earth', 'Boosts immunity ', 'Promotes restful sleep', 'Reduces stress C anxiety', 'Awakens spiritual insight'],
+      image: "/images/wellness/EnvOM.jpg"
     }
   ];
 
@@ -174,9 +174,9 @@ const WellnessMandala = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,theme(colors.gold.500/0.1),transparent_70%)] pointer-events-none"></div>
 
       <div className="container mx-auto px-2 sm:px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <div className="max-w-4xl mx-auto text-center mb-16 pt-4">
           <motion.div 
-            className="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden flex items-center justify-center bg-transparent"
+            className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden flex items-center justify-center bg-transparent"
             animate={{ rotate: 360 }}
             transition={{
               duration: 20,
@@ -190,10 +190,10 @@ const WellnessMandala = () => {
               className="w-full h-full object-contain"
             />
           </motion.div>
-          <h2 className="font-heading text-4xl md:text-5xl mb-4 text-gold-600">
+          <h2 className="font-heading text-4xl md:text-5xl mb-6 text-gold-600">
             Experience the Mandala of Wellness
           </h2>
-          <p className="text-xl text-maroon-700 font-accent mb-8">
+          <p className="text-xl text-maroon-700 mb-8">
             Discover our transformative journey through various dimensions of wellness
           </p>
           <div className="w-32 h-1 mx-auto bg-gold-600"></div>

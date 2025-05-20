@@ -25,7 +25,7 @@ const slides = [
     type: 'video',
     src: 'https://videos.pexels.com/video-files/7077051/7077051-hd_1920_1080_30fps.mp4',
     alt: 'Peaceful natural landscape at our retreat',
-    heading: '65+ Years of Trust',
+    heading: '67 Years of Trust',
     subheading: 'Highlights the spiritual and historical depth.',
     description:
       'Be a catalyst in a global movement where your support blends Santhigiri rich spiritual heritage with cutting-edge Ayurveda, nurturing peace and well-being across the world.',
@@ -40,7 +40,7 @@ const Hero = () => {
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setActiveSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      setActiveSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
         setTimeout(() => {
           setIsTransitioning(false);
         }, 300);
@@ -112,28 +112,28 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-30 h-full flex flex-col justify-center items-center px-4 text-center">
-        <div key={activeSlide} className="max-w-4xl mx-auto animate-fade-in transition-opacity duration-1200">
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-4 text-earth-100 leading-tight">
-            <span className="block">{slides[activeSlide].heading}</span>
-            <span className="block text-gold-300">{slides[activeSlide].subheading}</span>
-          </h1>
+<div className="relative z-30 h-full flex flex-col justify-center items-center px-4 text-center">
+  <div key={activeSlide} className="max-w-4xl mx-auto animate-fade-in transition-opacity duration-1200">
+    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-4 text-earth-100 leading-tight">
+      <span className="block">{slides[activeSlide].heading}</span>
+      <span className="block text-gold-300">{slides[activeSlide].subheading}</span>
+    </h1>
 
-          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-earth-200">
-            {slides[activeSlide].description}
-          </p>
-        </div>
-        
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a
-            href="#membership"
+    <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-earth-200">
+      {slides[activeSlide].description}
+    </p>
+  </div>
+  
+    <div className="flex flex-col sm:flex-row justify-center gap-4">
+      <a
+        href="#membership"
             className="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            Explore Royal Founder Membership
-          </a>
-        </div>
-      
-      </div>
+      >
+        Explore Royal Founder Membership
+      </a>
+    </div>
+  
+</div>
 
       {/* Scroll Down Indicator */}
       <button

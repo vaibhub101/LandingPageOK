@@ -141,15 +141,15 @@ const SpecialPrograms = () => {
           <div className="inline-block p-3 bg-gradient-to-br from-golden-400 to-golden-600 rounded-full mb-6">
             <Sparkles className="w-6 h-6 text-beige-50" />
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl mb-4 heading-gradient">
+          <h2 className="font-heading text-4xl md:text-5xl mb-6 text-gold-600">
             Soulful Transformation Programme
           </h2>
-          <p className="text-xl text-maroon-700 font-accent mb-8">
+          <p className="text-xl text-maroon-700 mb-8">
             Rare healing journeys that touch your heart, awaken your spirit, and stay with you forever
           </p>
-          <div className="w-32 h-1 mx-auto bg-gradient-to-r from-transparent via-maroon-200 to-transparent"></div>
+          <div className="w-32 h-1 bg-gold-600 mx-auto mb-8"></div>
         </div>
-
+                          
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {programs.map((program) => (
             <div 
@@ -166,7 +166,7 @@ const SpecialPrograms = () => {
         <div className="text-center mt-16">
           <a 
             href="#contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-golden-500 to-golden-600 text-white font-medium rounded-full hover:from-golden-600 hover:to-golden-700 transition-all duration-300 shadow-lg shadow-golden-600/20 hover:shadow-golden-600/30"
+            className="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg"
           >
             Begin Your Journey
           </a>

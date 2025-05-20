@@ -104,11 +104,11 @@ const MembershipTiers = () => {
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 {/* Front of card */}
-                <div 
+                <div
                   className={`absolute inset-0 rounded-xl overflow-hidden border-2 ${tier.borderColor} ${tier.backgroundColor} ${tier.metallic} relative ${
                     tier.recommended ? 'transform md:-translate-y-4' : ''
                   }`}
-                  style={{ 
+                  style={{
                     backfaceVisibility: 'hidden',
                     boxShadow: tier.recommended ? '0 8px 30px rgba(234,179,8,0.2)' : '0 4px 20px rgba(0, 0, 0, 0.1)'
                   }}
@@ -128,7 +128,7 @@ const MembershipTiers = () => {
                       </div>
                       <p className={`text-sm ${tier.id === 'platinum' ? 'text-blue-100' : 'text-maroon-600'}`}>Base investment (excl. taxes)</p>
                     </div>
-                    
+
                     <div className="space-y-4 mb-8">
                       <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-blue-400 text-blue-100' : 'border-maroon-200'} pb-2`}>
                         <span className={tier.id === 'platinum' ? 'text-blue-100' : 'text-maroon-600'}>Daily Rate:</span>
@@ -147,9 +147,9 @@ const MembershipTiers = () => {
                 </div>
 
                 {/* Back of card */}
-                <div 
+                <div
                   className={`absolute inset-0 rounded-xl overflow-hidden border-2 ${tier.borderColor}`}
-                  style={{ 
+                  style={{
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                     backgroundImage: `url(${membershipCardImage})`,
@@ -175,17 +175,17 @@ const MembershipTiers = () => {
                     </div>
 
                     <div className="mt-6">
-                      <button 
+                    <button
                         className={`w-full px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 ${
-                          tier.recommended 
+                        tier.recommended
                             ? 'bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-500 text-white hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-600 shadow-lg hover:shadow-xl' 
                             : tier.id === 'platinum'
                             ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700'
                             : 'bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400'
-                        }`}
-                      >
-                        Select {tier.name}
-                      </button>
+                      }`}
+                    >
+                      Select {tier.name}
+                    </button>
                     </div>
                   </div>
                 </div>
