@@ -1,132 +1,95 @@
-import React from 'react';
-import { Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, ChevronDown } from 'lucide-react';
 
 const SpecialPrograms = () => {
-  const programs = [
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+
+  const categories = [
     {
-      id: 'pranic',
-      title: 'PRANIC HEALING',
-      description: 'Supports physical healing, promotes emotional well-being, and enhances mental clarity'
+      id: 'breathwork',
+      title: 'Breathwork & Somatic Healing',
+      focus: 'Emotional release, trauma healing, body awareness',
+      programs: [
+        'Holotropic Breathwork',
+        'Pumpjack Breathing Technique (PBT)',
+        'Frog Breathing Technique (FBT)',
+        'Somatic Experience',
+        'Bowen Therapy',
+        'Quick Heal Technique (QHT)',
+        'Stress Buster (SB)',
+        'Alexander Technique'
+      ]
     },
     {
-      id: 'hypno',
-      title: 'HYPNO THERAPY',
-      description: 'Utilizes hypnosis to address various psychological issues'
+      id: 'meditation',
+      title: 'Meditation, Energy & Sound Healing',
+      focus: 'Relaxation, energy flow, intuitive connection',
+      programs: [
+        'OM Dhyanam',
+        'Full Moon Gong Bath',
+        'Reiki Healing',
+        'Osho Neo Reiki',
+        'Pranic Healing',
+        'BCST (Biodynamic Craniosacral Therapy)',
+        'Tibetan Pulsing',
+        'Access Conscious Bar',
+        'Firework (fear release)'
+      ]
     },
     {
-      id: 'taichi',
-      title: 'TAI CHI and Qi-Gong',
-      description: 'Improves balance, flexibility, and mental well-being'
+      id: 'spiritual',
+      title: 'Spiritual & Metaphysical Practices',
+      focus: 'Soul work, higher guidance, life understanding',
+      programs: [
+        'Akashic Record',
+        'Angel Healing',
+        'Shamanic Healing',
+        'Physic Surgery',
+        'Theta Healing',
+        'Law of Attraction',
+        'Silva Mind Technique',
+        'Ho\'oponopono',
+        'Astrology',
+        'Numerology',
+        'Tarot'
+      ]
     },
     {
-      id: 'plr',
-      title: 'PLR (Past Life Regression)',
-      description: 'Aids in understanding personal behaviors and resolving past traumas'
+      id: 'emotional',
+      title: 'Emotional & Psychological Healing',
+      focus: 'Self-awareness, inner growth, trauma resolution',
+      programs: [
+        'Shadow Work',
+        'Past Life Regression (PLR)',
+        'NLP (Neuro-Linguistic Programming)',
+        'EFT (Emotionally Focused Therapy)',
+        'Heal Your Life',
+        'Bach Flower Remedy',
+        'Hypnotherapy'
+      ]
     },
     {
-      id: 'loa',
-      title: 'LAW OF ATTRACTION',
-      description: 'Encourages Positive thinking, Happiness, Health, wealth and Abundance'
+      id: 'movement',
+      title: 'Movement & Physical Wellness',
+      focus: 'Body balance, physical health, energy flow',
+      programs: [
+        'Tai Chi',
+        'SKY Healing',
+        '7 COBH Technique (7 COBH\'T)',
+        'Alexander Technique'
+      ]
     },
     {
-      id: 'nlp',
-      title: 'NLP (Neuro-Linguistic Programming)',
-      description: 'Enhances communication skills and personal development'
-    },
-    {
-      id: 'parenting',
-      title: 'PARENTING',
-      description: 'Strategies and practices to support effective child-rearing'
-    },
-    {
-      id: 'eft',
-      title: 'EFT (Emotional Freedom Technique)',
-      description: 'Reduces emotional distress and promotes healing'
-    },
-    {
-      id: 'bcst',
-      title: 'BCST (Biodynamic Craniosacral Therapy)',
-      description: 'Supports nervous system regulation and promotes relaxation'
-    },
-    {
-      id: 'access-bars',
-      title: 'ACCESS CONSCIOUS BAR',
-      description: 'Aims to release mental blocks and promote relaxation'
-    },
-    {
-      id: 'bowen',
-      title: 'BOWEN THERAPY',
-      description: 'Relieves pain, improves mobility, and supports musculoskeletal health'
-    },
-    {
-      id: 'theta',
-      title: 'THETA HEALING',
-      description: 'Combines meditation and spiritual philosophy to promote healing'
-    },
-    {
-      id: 'akashic',
-      title: 'AKASHIC RECORD',
-      description: 'Accesses soul records to understand life patterns and challenges'
-    },
-    {
-      id: 'bach',
-      title: 'BACH FLOWER REMEDY',
-      description: 'Addresses emotional imbalances using flower essences'
-    },
-    {
-      id: 'somatic',
-      title: 'SOMATIC EXPERIENCE',
-      description: 'Addresses trauma by focusing on bodily sensations to release stress'
-    },
-    {
-      id: 'tibetan',
-      title: 'TIBETAN PULSING',
-      description: 'Releases emotional blockage, Restores energy flow, Supports healing and inner peace'
-    },
-    {
-      id: 'shamanic',
-      title: 'SHAMANIC HEALING',
-      description: 'Facilitates spiritual healing and deeper transformation'
-    },
-    {
-      id: 'holotropic',
-      title: 'HOLOTROPHIC BREATHWORK',
-      description: 'Facilitates emotional release, deepens self-awareness, and aids in trauma healing'
-    },
-    {
-      id: 'qht',
-      title: 'QUICK HEAL TECHNIQUE (QHT)',
-      description: 'A fast-acting healing method that uses breath, intention, and energy work to support rapid physical and emotional recovery'
-    },
-    {
-      id: 'sb',
-      title: 'STRESS BUSTER (SB)',
-      description: 'Techniques designed to reduce stress and promote relaxation'
-    },
-    {
-      id: 'pbt',
-      title: 'PUMPJACK BREATHING TECHNIQUE (PBT)',
-      description: 'Deepens self-awareness, and aids in trauma healing, spiritual connection and insight'
-    },
-    {
-      id: 'fbt',
-      title: 'FROG BREATHING TECHNIQUE (FBT)',
-      description: 'Healing Through Consciousness, Self-Awareness & Insight'
-    },
-    {
-      id: '7cobh',
-      title: '7 COBH TECHNIQUE',
-      description: 'Experience deep transformation through chakra opening, balancing and healing to restore harmony in your body, mind, and spirit'
-    },
-    {
-      id: 'om-dhyanam',
-      title: 'OM DHYANAM',
-      description: 'Reduces stress and anxiety, improves concentration, and promotes relaxation'
-    },
-    {
-      id: 'signature',
-      title: 'OM KALYANAM SIGNATURE PROGRAMME',
-      description: 'A rare collection of soul-nourishing journeys—seamlessly blending ancient healing sciences with modern ease. Thoughtfully curated for all age groups, each programme is a gateway to inner balance, emotional freedom, and spiritual elevation'
+      id: 'conscious',
+      title: 'Conscious Living & Personal Growth',
+      focus: 'Life transformation, parenting, self-empowerment',
+      programs: [
+        'Parenting',
+        'Law of Attraction',
+        'Heal Your Life',
+        'Sufi Practices',
+        'Silva Mind Technique'
+      ]
     }
   ];
 
@@ -150,15 +113,39 @@ const SpecialPrograms = () => {
           <div className="w-32 h-1 bg-gold-600 mx-auto mb-8"></div>
         </div>
                           
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {programs.map((program) => (
+        <div className="max-w-4xl mx-auto space-y-4">
+          {categories.map((category) => (
             <div 
-              key={program.id}
-              className="group relative bg-beige-50/80 backdrop-blur-sm rounded-lg p-6 border border-maroon-100/20 hover:border-maroon-200/40 transition-all duration-300 hover:shadow-lg"
+              key={category.id}
+              className="bg-beige-50/80 backdrop-blur-sm rounded-lg border border-maroon-100/20 hover:border-maroon-200/40 transition-all duration-300"
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-golden-300/30 to-transparent"></div>
-              <h3 className="font-heading text-lg text-golden-600 mb-2">{program.title}</h3>
-              <p className="text-maroon-700 text-sm">{program.description}</p>
+              <button
+                onClick={() => setExpandedCategory(expandedCategory === category.id ? null : category.id)}
+                className="w-full px-6 py-4 flex items-center justify-between text-left"
+              >
+                <div>
+                  <h3 className="font-heading text-lg text-golden-600 mb-1">{category.title}</h3>
+                  <p className="text-sm text-maroon-700">{category.focus}</p>
+                </div>
+                <ChevronDown 
+                  className={`w-5 h-5 text-golden-600 transition-transform duration-300 ${
+                    expandedCategory === category.id ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {expandedCategory === category.id && (
+                <div className="px-6 pb-4 border-t border-maroon-100/20">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-4">
+                    {category.programs.map((program, index) => (
+                      <li key={index} className="flex items-start text-sm">
+                        <span className="text-gold-500 mr-2">•</span>
+                        <span className="text-maroon-700">{program}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           ))}
         </div>

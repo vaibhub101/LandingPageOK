@@ -67,27 +67,29 @@ const Hero = () => {
                 : 'opacity-0 translate-x-full z-0'
             } ${isTransitioning ? 'bg-beige-100' : ''}`}
           >
-            {slide.type === 'video' ? (
-              <video
-                autoPlay
-                muted
-                loop
-                className={`w-full h-full object-cover transition-opacity duration-300 ${
-                  isTransitioning ? 'opacity-0' : 'opacity-100'
-                }`}
-              >
-                <source src={slide.src} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            ) : (
-              <img
-                src={slide.src}
-                alt={slide.alt}
-                className={`w-full h-full object-cover transition-opacity duration-300 ${
-                  isTransitioning ? 'opacity-0' : 'opacity-100'
-                }`}
-              />
-            )}
+            <div className="w-full h-full sm:h-full flex items-center justify-center aspect-[16/9] sm:aspect-auto">
+              {slide.type === 'video' ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  className={`w-full h-full ${
+                    isTransitioning ? 'opacity-0' : 'opacity-100'
+                  } object-contain sm:object-cover transition-opacity duration-300`}
+                >
+                  <source src={slide.src} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  className={`w-full h-full ${
+                    isTransitioning ? 'opacity-0' : 'opacity-100'
+                  } object-contain sm:object-cover transition-opacity duration-300`}
+                />
+              )}
+            </div>
           </div>
         ))}
 

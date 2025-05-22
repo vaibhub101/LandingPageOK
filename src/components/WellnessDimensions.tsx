@@ -161,53 +161,82 @@ const WellnessDimensions = () => {
           <div className="w-24 h-1 bg-gold-600 mx-auto mt-6"></div>
         </div>
 
-        {/* Carousel Container */}
-        <div
-          ref={containerRef}
-          className="flex overflow-x-auto space-x-4 sm:space-x-6 px-1 cursor-grab active:cursor-grabbing scrollbar-hide"
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
-        >
-          {loopedDimensions.map((dim, index) => (
-            <div
-              key={index}
-              className="min-w-[85vw] max-w-[340px] sm:min-w-[300px] sm:max-w-[300px] flex-shrink-0 bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-xl overflow-hidden transition-all duration-500 hover:transform hover:scale-105 hover:[animation-play-state:paused] group"
-            >
-              {/* Image Top */}
-              <div className="w-full h-48 overflow-hidden">
-                <img
-                  src={dim.image}
-                  alt={dim.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-              </div>
+        {/* Carousel Container with Fade Effects */}
+        <div className="relative">
+          {/* Left Fade Gradient */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-beige-50 to-transparent z-10 pointer-events-none"></div>
+          
+          {/* Right Fade Gradient */}
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-beige-50 to-transparent z-10 pointer-events-none"></div>
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center space-x-3 mb-3">
-                  <div className="p-2 rounded-full bg-gold-500/10">
-                    {dim.icon}
+          {/* Carousel Container */}
+          <div
+            ref={containerRef}
+            className="flex overflow-x-auto space-x-4 sm:space-x-6 px-1 cursor-grab active:cursor-grabbing scrollbar-none"
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ 
+              scrollBehavior: isDragging ? 'auto' : 'smooth',
+              WebkitOverflowScrolling: 'touch',
+              msOverflowStyle: 'none',
+              scrollbarWidth: 'none'
+            }}
+          >
+            {loopedDimensions.map((dim, index) => {
+              // Calculate opacity based on scroll position
+              const opacity = 1;
+              const scale = 1;
+              
+              return (
+                <div
+                  key={index}
+                  className="min-w-[85vw] max-w-[340px] sm:min-w-[300px] sm:max-w-[300px] flex-shrink-0 
+                    bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-xl overflow-hidden 
+                    transition-all duration-500 ease-out hover:transform hover:scale-105 
+                    hover:[animation-play-state:paused] group"
+                  style={{
+                    opacity,
+                    transform: `scale(${scale})`,
+                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
+                >
+                  {/* Image Top with Golden Border */}
+                  <div className="w-full h-48 overflow-hidden relative">
+                    <div className="absolute inset-0 border-2 border-gold-300/30 rounded-t-xl"></div>
+                    <img
+                      src={dim.image}
+                      alt={dim.title}
+                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
                   </div>
-                  <h3 className="text-xl font-heading text-gold-600">{dim.title}</h3>
+
+                  {/* Content */}
+                  <div className="p-4 sm:p-6">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div className="p-2 rounded-full bg-gold-500/10">
+                        {dim.icon}
+                      </div>
+                      <h3 className="text-lg sm:text-xl font-heading text-gold-600">{dim.title}</h3>
+                    </div>
+                    <p className="text-maroon-600 text-sm mb-4">{dim.description}</p>
+                    <ul className="space-y-2">
+                      {dim.items.map((item, i) => (
+                        <li key={i} className="flex items-start text-sm">
+                          <span className="text-gold-500 mr-2">•</span>
+                          <span className="text-maroon-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <p className="text-maroon-600 text-sm mb-4">{dim.description}</p>
-                <ul className="space-y-2">
-                  {dim.items.map((item, i) => (
-                    <li key={i} className="flex items-start text-sm">
-                      <span className="text-gold-500 mr-2">•</span>
-                      <span className="text-maroon-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

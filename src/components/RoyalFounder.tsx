@@ -33,14 +33,14 @@ const RoyalFounder = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-up order-2 md:order-1">
             <p className="text-lg leading-relaxed mb-6 text-maroon-700">
-              A Legacy Beyond Wellness	
-              Tapasvi Mandala is the sacred circle of Royal Founder Members—visionary souls who feel called to walk the higher path of
-              conscious living, collective healing, and timeless wisdom.
-              By joining this intimate fellowship, you become a co-creator in the spiritual legacy of Om Kalyanam Santhigiri—a sanctuary
-              where ancient healing, emotional awakening, and soul transformation come together in harmony.
+            A Legacy Beyond Wellness	
+Tapasvi Mandala is the sacred circle of Royal Founder Members—visionary souls who feel called to walk the higher path of
+conscious living, collective healing, and timeless wisdom.
+By joining this intimate fellowship, you become a co-creator in the spiritual legacy of Om Kalyanam Santhigiri—a sanctuary
+where ancient healing, emotional awakening, and soul transformation come together in harmony.
             </p>
             <p className="text-lg leading-relaxed mb-6 text-maroon-700">
-              This is not just a membership. It is a heartfelt offering to the world—and a divine return to your true self.	
+            This is not just a membership. It is a heartfelt offering to the world—and a divine return to your true self.	
             </p>
             
             <div className="bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-lg p-8 mt-8 shadow-lg hover:shadow-xl transition-all duration-300">

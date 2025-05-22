@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, Award, Globe2, Users2 } from 'lucide-react';
+import { Building2, Award, Globe2, Users2, School2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const SanthigiriOrg = () => {
@@ -23,6 +23,16 @@ const SanthigiriOrg = () => {
       title: "Product Range",
       description: "400+ proprietary Ayurveda & Siddha medicines",
       icon: <Award className="w-6 h-6 text-gold-600" />
+    },
+    {
+      title: "Training Excellence",
+      description: "Paramedical Institute for the training of Panchakarma Therapists.",
+      icon: <School2 className="w-6 h-6 text-gold-600" />
+    },
+    {
+      title: "Educational Leadership",
+      description: "Santhigiri stands as Asia’s only institute for English-medium Ayurveda education.",
+      icon: <Building2 className="w-6 h-6 text-gold-600" />
     }
   ];
 
@@ -120,7 +130,7 @@ const SanthigiriOrg = () => {
         <div className="mb-20 relative py-16 bg-beige-100/80 backdrop-blur-sm">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-gold-500/10 to-maroon-500/10"></div>
-          </div>
+            </div>
 
           <div className="relative z-10">
             <h3 className="text-3xl font-heading text-gold-600 text-center mb-12">Our Distinguished Visitors</h3>
@@ -134,18 +144,18 @@ const SanthigiriOrg = () => {
                   >
                     <div className="bg-gradient-to-br from-maroon-800 to-maroon-900 p-4 shadow-xl rounded-lg group">
                       <div className="aspect-[4/3] overflow-hidden mb-4 border-2 border-gold-300/40 rounded-lg">
-                        <img 
-                          src={image.url} 
-                          alt={image.caption}
+                  <img 
+                    src={image.url} 
+                    alt={image.caption}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                        />
+                  />
                       </div>
                       <p className="text-gold-300 text-sm text-center font-heading group-hover:text-gold-400 transition-colors">
                         {image.caption || "Distinguished visitor at Santhigiri Ashram"}
                       </p>
-                    </div>
                   </div>
-                ))}
+                </div>
+              ))}
               </div>
             </div>
           </div>
@@ -155,9 +165,9 @@ const SanthigiriOrg = () => {
         <div className="flex justify-center items-center mb-16">
           <div className="relative z-10 overflow-hidden rounded-lg shadow-xl border-4 border-gold-500 group">
             <div className="absolute inset-0 bg-gradient-to-t from-beige-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <img 
-              src="https://www.santhigiriashram.org/images/lotusparnasala.jpg" 
-              alt="Santhigiri Ayurveda Center" 
+              <img 
+                src="https://www.santhigiriashram.org/images/lotusparnasala.jpg" 
+                alt="Santhigiri Ayurveda Center" 
               className="w-full max-w-xl h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
           </div>

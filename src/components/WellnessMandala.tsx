@@ -91,6 +91,13 @@ const WellnessMandala = () => {
       description: 'Sacred routines to anchor your transformation',
       items: ['Deepens connection with the Earth', 'Boosts immunity ', 'Promotes restful sleep', 'Reduces stress C anxiety', 'Awakens spiritual insight'],
       image: "/images/wellness/EnvOM.jpg"
+    },
+    {
+      id: 'wisdom',
+      title: 'Wisdom and Miracle Programme',
+      description: 'Inner Transformation Workshops',
+      items: ['Conscious Manifestation Sessions', 'Daily Affirmation Rituals', 'Vision Alignment Ceremonies', 'Emotional Empowerment Circles', 'Spiritual Intention Mapping', 'Quantum Focus Techniques and many more'],
+      image: "/images/wellness/consc.jpg"
     }
   ];
 
@@ -132,7 +139,7 @@ const WellnessMandala = () => {
   // Add this at the top level of the component, before the return statement
   const shimmerAnimation = {
     hidden: {
-      background: "linear-gradient(45deg, rgba(234,179,8,0.2) 0%, rgba(234,179,8,0.1) 25%, rgba(234,179,8,0.2) 50%, rgba(234,179,8,0.1) 75%, rgba(234,179,8,0.2) 100%)",
+      background: "linear-gradient(45deg, rgba(234,179,8,0.2) 0%, rgba(234,179,8,0.1) 25%, rgba(234,179,8,0.2) 25%, rgba(234,179,8,0.1) 50%, rgba(234,179,8,0.2) 100%)",
       backgroundSize: "200% 200%",
       backgroundPosition: "0% 0%"
     },
@@ -214,46 +221,37 @@ const WellnessMandala = () => {
           onTouchEnd={handleTouchEnd}
           ref={carouselRef}
         >
-          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-50 px-2 sm:px-4">
-            <button 
-              onClick={() => setCurrentIndex((prev) => (prev - 1 + wellnessExperiences.length) % wellnessExperiences.length)}
-              className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-gold-600/90 to-gold-700/90 text-white
-                shadow-[0_2px_10px_rgba(234,179,8,0.2)] hover:shadow-[0_5px_15px_rgba(234,179,8,0.4)]
-                transform hover:scale-110 transition-all duration-300 hover:-translate-x-1"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-            <button 
-              onClick={() => setCurrentIndex((prev) => (prev + 1) % wellnessExperiences.length)}
-              className="p-2 sm:p-3 rounded-full bg-gradient-to-r from-gold-600/90 to-gold-700/90 text-white
-                shadow-[0_2px_10px_rgba(234,179,8,0.2)] hover:shadow-[0_5px_15px_rgba(234,179,8,0.4)]
-                transform hover:scale-110 transition-all duration-300 hover:translate-x-1"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-          </div>
-
           <div className="relative w-full h-full flex items-center justify-center">
             {wellnessExperiences.map((experience, index) => {
-              const offset = index - currentIndex;
-              const normalizedOffset = ((offset % wellnessExperiences.length) + wellnessExperiences.length) % wellnessExperiences.length;
-              const angle = (normalizedOffset * (360 / wellnessExperiences.length)) % 360;
+              // Calculate circular offset for a true 3D ring effect
+              const total = wellnessExperiences.length;
+              // Use modular arithmetic for seamless circular movement
+              let offset = index - currentIndex;
+              if (offset < -Math.floor(total / 2)) offset += total;
+              if (offset > Math.floor(total / 2)) offset -= total;
+              const angle = (offset * (360 / total)) % 360;
               const radians = (angle * Math.PI) / 180;
-              const translateX = Math.sin(radians) * 400;
-              const translateZ = Math.cos(radians) * 200 - 200;
-              const opacity = 1 - Math.abs(normalizedOffset) * 0.2;
-              const scale = 1 - Math.abs(normalizedOffset) * 0.15;
-              const isCenter = index === currentIndex;
+              // Adjust radius for better mobile view
+              const radiusX = window.innerWidth < 640 ? 300 : 400;
+              const radiusZ = window.innerWidth < 640 ? 160 : 220;
+              const translateX = Math.sin(radians) * radiusX;
+              const translateZ = Math.cos(radians) * radiusZ - radiusZ;
+              // Symmetric scale and opacity
+              const absOffset = Math.abs(offset);
+              const scale = 1 - absOffset * 0.13;
+              const opacity = 1 - absOffset * 0.22;
+              const isCenter = offset === 0;
 
               return (
                 <motion.div
                   key={experience.id}
-                  className={`absolute w-[90vw] max-w-[340px] sm:w-[600px] sm:max-w-none h-[320px] sm:h-[400px] rounded-xl overflow-hidden transition-all duration-700 ease-in-out cursor-pointer
+                  className={`absolute w-[85vw] max-w-[300px] sm:w-[500px] sm:max-w-none h-[280px] sm:h-[380px] rounded-xl overflow-hidden transition-all duration-700 ease-in-out cursor-pointer
                     ${isCenter ? 'hover:scale-110' : ''}`}
                   style={{
                     transform: `translateX(${translateX}px) translateZ(${translateZ}px) scale(${scale})`,
                     opacity,
-                    zIndex: 1000 - Math.abs(normalizedOffset),
+                    zIndex: 1000 - absOffset,
+                    pointerEvents: opacity < 0.2 ? 'none' : 'auto',
                   }}
                   initial={false}
                   animate={{
@@ -263,57 +261,56 @@ const WellnessMandala = () => {
                     opacity: opacity,
                   }}
                   transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 20,
+                    type: 'spring',
+                    stiffness: 90,
+                    damping: 18,
                     mass: 1
                   }}
                   whileHover={isCenter ? { scale: 1.1 } : undefined}
                   onClick={() => setCurrentIndex(index)}
                 >
-                  {/* Golden Border with Shimmer Effect */}
-                  <motion.div 
-                    className="absolute -inset-[2px] rounded-xl z-0"
-                    initial="hidden"
-                    animate="visible"
-                    variants={shimmerAnimation}
-                  />
-                  {/* Inner Shadow Overlay */}
-                  <div className="absolute inset-0 rounded-xl shadow-[inset_0_0_8px_rgba(234,179,8,0.3)] z-10" />
+                  {/* Enhanced Golden Border */}
+                  <div className="absolute -inset-[3px] rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 z-0 animate-gradient-x"></div>
                   
-                  <div className="relative w-full h-full group z-20">
-                    {/* Add a subtle golden glow to the card */}
+                  {/* Inner Shadow Overlay - Lighter */}
+                  <div className="absolute inset-0 rounded-xl shadow-[inset_0_0_8px_rgba(234,179,8,0.08)] z-10 pointer-events-none" />
+                  
+                  <div className="relative w-full h-full group z-20 bg-white rounded-xl overflow-hidden">
+                    {/* Subtle golden glow */}
                     <div className={`absolute inset-0 rounded-xl transition-opacity duration-300
-                      shadow-[0_0_15px_rgba(234,179,8,0.2)] ${isCenter ? 'group-hover:shadow-[0_0_25px_rgba(234,179,8,0.4)]' : ''}`} 
+                      shadow-[0_0_15px_rgba(234,179,8,0.08)] ${isCenter ? 'group-hover:shadow-[0_0_25px_rgba(234,179,8,0.15)]' : ''}`} 
                     />
                     
                     <img 
                       src={experience.image} 
                       alt={experience.title}
-                      className={`w-full h-full object-cover transition-transform duration-500 ${
+                      className={`w-full h-full object-cover transition-transform duration-500 brightness-105 saturate-110 ${
                         isCenter ? 'group-hover:scale-105' : ''
                       }`}
                     />
+                    
                     {/* Slide number indicator with enhanced golden styling */}
-                    <div className={`absolute top-4 right-4 w-12 h-12 rounded-full 
+                    <div className={`absolute top-4 right-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full 
                       bg-gradient-to-br from-gold-300/20 to-gold-600/20 backdrop-blur-sm
                       flex items-center justify-center border-2 border-gold-300/40 transform rotate-12
                       shadow-[0_0_10px_rgba(234,179,8,0.2)]
                       ${isCenter ? 'group-hover:rotate-0 group-hover:shadow-[0_0_15px_rgba(234,179,8,0.3)]' : ''} 
                       transition-all duration-300`}>
-                      <span className={`font-heading text-gold-300 text-lg transform -rotate-12 
+                      <span className={`font-heading text-gold-300 text-base sm:text-lg transform -rotate-12 
                         ${isCenter ? 'group-hover:rotate-0' : ''} transition-all duration-300`}>
                         {index + 1}
                       </span>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-beige-900/90 via-beige-800/70 to-transparent 
-                      flex flex-col justify-end p-8 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
-                      <h3 className={`text-2xl font-heading text-gold-300 mb-3 font-bold transition-transform duration-300 ${
+
+                    {/* Much lighter overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-beige-100/40 via-beige-50/20 to-transparent 
+                      flex flex-col justify-end p-4 sm:p-8 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className={`text-xl sm:text-2xl font-heading text-gold-300 mb-2 sm:mb-3 font-bold transition-transform duration-300 ${
                         isCenter ? 'group-hover:scale-105' : ''
                       }`}>
                         {experience.title}
                       </h3>
-                      <p className={`text-maroon-200 mb-4 transition-transform duration-300 ${
+                      <p className={`text-maroon-700 text-sm sm:text-base mb-3 sm:mb-4 transition-transform duration-300 ${
                         isCenter ? 'group-hover:translate-y-0' : ''
                       }`}>
                         {experience.description}
@@ -323,7 +320,7 @@ const WellnessMandala = () => {
                           e.stopPropagation();
                           setSelectedExperience(selectedExperience === index ? null : index);
                         }}
-                        className={`inline-flex items-center text-gold-300 hover:text-gold-400 transition-all duration-300 ${
+                        className={`inline-flex items-center text-gold-300 hover:text-gold-400 transition-all duration-300 text-sm sm:text-base ${
                           isCenter ? 'group-hover:translate-x-2' : ''
                         }`}
                       >
@@ -335,14 +332,13 @@ const WellnessMandala = () => {
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, ease: "easeOut" }}
-                          className="mt-4 bg-beige-50/10 backdrop-blur-sm rounded-lg p-4 border border-gold-300/20
-                            shadow-[0_0_15px_rgba(234,179,8,0.1)]"
+                          transition={{ duration: 0.5, ease: 'easeOut' }}
+                          className="mt-3 sm:mt-4 bg-beige-50/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-gold-300/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <ul className="grid grid-cols-2 gap-2">
+                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {experience.items.map((item, idx) => (
-                              <li key={idx} className="text-maroon-200 flex items-center">
+                              <li key={idx} className="text-maroon-700 text-sm sm:text-base flex items-center">
                                 <span className="text-gold-400 mr-2">•</span>
                                 {item}
                               </li>
