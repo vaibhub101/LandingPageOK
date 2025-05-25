@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import LogoSection from './components/LogoSection';
 import About from './components/About';
 import SanthigiriOrg from './components/SanthigiriOrg';
 import RoyalFounder from './components/RoyalFounder';
-import WellnessMandala from './components/WellnessMandala';
 import WellnessDimensions from './components/WellnessDimensions';
+import WellnessMandala from './components/WellnessMandala';
 import SpecialPrograms from './components/SpecialPrograms';
 import MembershipTiers from './components/MembershipTiers';
 import MembershipUsage from './components/MembershipUsage';
@@ -31,33 +32,34 @@ function App() {
         
         {/* Main content */}
         <div className="relative">
-      <Header />
-      <main>
+          <Header />
+          <main>
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-maroon-200 to-transparent opacity-30"></div>
             <Routes>
               <Route path="/" element={
                 <>
-        <Hero />
-        <About />
-        <SanthigiriOrg />
-        <RoyalFounder />
+                  <Hero />
+                  <LogoSection />
+                  <About />
+                  <SanthigiriOrg />
+                  <RoyalFounder />
+                  <WellnessDimensions />
                   <WellnessMandala />
-        <WellnessDimensions />
-        <SpecialPrograms />
-        <MembershipTiers />
-        <MembershipUsage />
-        <Trainers />
-        <Testimonials />
-        <Quotations />
-        <FinalMessage />
+                  <SpecialPrograms />
+                  <MembershipTiers />
+                  <MembershipUsage />
+                  <Trainers />
+                  <Testimonials />
+                  <Quotations />
+                  <FinalMessage />
                   <EnquiryForm />
                 </>
               } />
             </Routes>
             <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-maroon-200 to-transparent opacity-30"></div>
-      </main>
-      <Footer />
-    </div>
+          </main>
+          <Footer />
+        </div>
       </div>
     </Router>
   );

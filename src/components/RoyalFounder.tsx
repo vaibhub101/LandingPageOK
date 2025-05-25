@@ -25,7 +25,7 @@ const RoyalFounder = () => {
               className="w-full h-full object-contain"
             />
           </motion.div>
-          <h2 className="font-heading text-4xl md:text-5xl mb-6 text-gold-600 uppercase">TAPASVI MANDALA ROYAL FOUNDER MEMBERSHIP</h2>
+          <h2 className="font-heading text-4xl md:text-5xl mb-6 text-gold-600 uppercase">TAPASVI MANDALA</h2>
           <p className="text-xl text-maroon-700">Become a Royal Founder Member</p>
           <div className="w-32 h-1 bg-gold-600 mx-auto mt-6"></div>
         </div>
@@ -48,19 +48,23 @@ where ancient healing, emotional awakening, and soul transformation come togethe
               <ul className="space-y-4">
                 <li className="flex items-start gap-4 group">
                   <span className="text-gold-500 font-bold text-xl group-hover:scale-110 transition-transform">✦</span>
-                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Priority Booking</span>
+                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Be a part of a living legacy</span>
                 </li>
                 <li className="flex items-start gap-4 group">
                   <span className="text-gold-500 font-bold text-xl group-hover:scale-110 transition-transform">✦</span>
-                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Exclusive Founder Discounts</span>
+                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Recieve life long blessings</span>
                 </li>
                 <li className="flex items-start gap-4 group">
                   <span className="text-gold-500 font-bold text-xl group-hover:scale-110 transition-transform">✦</span>
-                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Personalised privileges</span>
+                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Be remembered, forever</span>
                 </li>
                 <li className="flex items-start gap-4 group">
                   <span className="text-gold-500 font-bold text-xl group-hover:scale-110 transition-transform">✦</span>
-                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Recognition in Our Living Legacy</span>
+                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Create ripples of healing</span>
+                </li>
+                <li className="flex items-start gap-4 group">
+                  <span className="text-gold-500 font-bold text-xl group-hover:scale-110 transition-transform">✦</span>
+                  <span className="text-maroon-700 group-hover:text-gold-600 transition-colors">Belong to a soul-chosen circle</span>
                 </li>
               </ul>
             </div>

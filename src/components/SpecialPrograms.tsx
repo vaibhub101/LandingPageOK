@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Sparkles, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 const SpecialPrograms = () => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
@@ -101,9 +102,13 @@ const SpecialPrograms = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-block p-3 bg-gradient-to-br from-golden-400 to-golden-600 rounded-full mb-6">
-            <Sparkles className="w-6 h-6 text-beige-50" />
-          </div>
+          <motion.div
+            className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden flex items-center justify-center bg-transparent"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <img src="/bgremflower.png" alt="Mandala Flower" className="w-full h-full object-contain" />
+          </motion.div>
           <h2 className="font-heading text-4xl md:text-5xl mb-6 text-gold-600">
             Soulful Transformation Programme
           </h2>

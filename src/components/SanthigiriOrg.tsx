@@ -31,7 +31,7 @@ const SanthigiriOrg = () => {
     },
     {
       title: "Educational Leadership",
-      description: "Santhigiri stands as Asia’s only institute for English-medium Ayurveda education.",
+      description: "Santhigiri stands as Asia's only institute for English-medium Ayurveda education.",
       icon: <Building2 className="w-6 h-6 text-gold-600" />
     }
   ];
@@ -176,16 +176,16 @@ const SanthigiriOrg = () => {
         {/* Legacy Section */}
         <div className="bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-xl p-8 mb-16 hover:shadow-xl transition-all duration-300">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-heading text-gold-600 mb-6">Welcome to Santhigiri: 67 Years of Trust and Healing</h3>
+            <h3 className="text-3xl font-heading text-gold-600 mb-6">Welcome to Santhigiri: 60+ Years of Trust and Healing</h3>
             <p className="text-lg text-maroon-700">
-              For 65+ years, Santhigiri has been at the forefront of holistic wellness and spiritual growth. With a legacy rooted in Ayurvedic education, research, and healthcare, Santhigiri is committed to providing transformative healing through the fusion of tradition and modern science.
+              For 60+ years, Santhigiri has been at the forefront of holistic wellness and spiritual growth. With a legacy rooted in Ayurvedic education, research, and healthcare, Santhigiri is committed to providing transformative healing through the fusion of tradition and modern science.
             </p>
           </div>
         </div>
 
         {/* Achievements Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {achievements.map((achievement, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {achievements.slice(0, 6).map((achievement, index) => (
             <div key={index} 
               className="bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-lg p-6 
                 hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group"

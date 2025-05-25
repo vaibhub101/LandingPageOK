@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 const MembershipTiers = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [flippedMobile, setFlippedMobile] = useState<string | null>(null);
 
   const membershipCardImage = "https://images.pexels.com/photos/31906578/pexels-photo-31906578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
@@ -23,10 +24,14 @@ const MembershipTiers = () => {
         'Complimentary spa treatments',
         'Special rates for family members'
       ],
-      backgroundColor: 'bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300',
+      // Silver gradient
+      backgroundColor: 'bg-gradient-to-br from-[#e3e3e3] via-[#f8f8f8] to-[#bdbdbd]',
       borderColor: 'border-[#C0C0C0]',
       highlightColor: 'text-gray-700',
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-gray-200/50 before:via-white/80 before:to-gray-100/50 before:opacity-50'
+      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f8f8f8]/60 before:via-white/80 before:to-[#e3e3e3]/60 before:opacity-70',
+      button: 'bg-gradient-to-r from-[#e3e3e3] to-[#bdbdbd] text-gray-700',
+      glow: 'hover:shadow-[0_0_24px_6px_rgba(192,192,192,0.5)]',
+      sparkle: 'sparkle-silver'
     },
     {
       id: 'gold',
@@ -45,11 +50,15 @@ const MembershipTiers = () => {
         'VIP event access',
         'Extended stay privileges'
       ],
-      backgroundColor: 'bg-gradient-to-br from-yellow-100 via-yellow-200 to-yellow-300',
-      borderColor: 'border-yellow-400',
-      highlightColor: 'text-yellow-700',
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-yellow-200/50 before:via-white/80 before:to-yellow-100/50 before:opacity-70 before:animate-shine',
-      recommended: true
+      // Gold gradient
+      backgroundColor: 'bg-gradient-to-br from-[#ffe082] via-[#ffd54f] to-[#ffb300]',
+      borderColor: 'border-[#FFD700]',
+      highlightColor: 'text-yellow-800',
+      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#fff8e1]/60 before:via-white/80 before:to-[#ffe082]/60 before:opacity-80',
+      recommended: true,
+      button: 'bg-gradient-to-r from-[#ffe082] to-[#ffb300] text-yellow-900',
+      glow: 'hover:shadow-[0_0_32px_8px_rgba(255,215,0,0.5)]',
+      sparkle: 'sparkle-gold'
     },
     {
       id: 'platinum',
@@ -69,15 +78,72 @@ const MembershipTiers = () => {
         'Dedicated wellness concierge',
         'Custom wellness programs'
       ],
-      backgroundColor: 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800',
-      borderColor: 'border-blue-500',
-      highlightColor: 'text-white',
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-blue-400/30 before:via-white/20 before:to-blue-300/30 before:opacity-50'
+      // Rose gold gradient
+      backgroundColor: 'bg-gradient-to-br from-[#f7cac9] via-[#ffe5d9] to-[#b76e79]',
+      borderColor: 'border-[#b76e79]',
+      highlightColor: 'text-[#b76e79]',
+      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#ffe5d9]/60 before:via-white/80 before:to-[#f7cac9]/60 before:opacity-70',
+      button: 'bg-gradient-to-r from-[#f7cac9] to-[#b76e79] text-[#b76e79]',
+      glow: 'hover:shadow-[0_0_32px_8px_rgba(183,110,121,0.5)]',
+      sparkle: 'sparkle-rose'
     }
   ];
 
+  // Mobile detection
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
+  // Helper for flipping on both click and touch
+  const handleFlip = (id: string) => {
+    if (isMobile) {
+      setFlippedMobile(flippedMobile === id ? null : id);
+    }
+  };
+
   return (
     <section id="membership-tiers" className="py-20 bg-gradient-to-b from-beige-50 to-beige-100">
+      <style>{`
+        @keyframes sparkle {
+          0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+          50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+          100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+        }
+        .sparkle-silver::after {
+          content: '';
+          position: absolute;
+          top: 10%; left: 70%;
+          width: 18px; height: 18px;
+          background: radial-gradient(circle, #fff 60%, #e3e3e3 100%);
+          border-radius: 50%;
+          opacity: 0.7;
+          pointer-events: none;
+          animation: sparkle 1.2s infinite;
+          filter: blur(1px);
+        }
+        .sparkle-gold::after {
+          content: '';
+          position: absolute;
+          top: 12%; left: 65%;
+          width: 20px; height: 20px;
+          background: radial-gradient(circle, #fffbe6 60%, #ffd700 100%);
+          border-radius: 50%;
+          opacity: 0.7;
+          pointer-events: none;
+          animation: sparkle 1.2s infinite;
+          filter: blur(1px);
+        }
+        .sparkle-rose::after {
+          content: '';
+          position: absolute;
+          top: 14%; left: 60%;
+          width: 18px; height: 18px;
+          background: radial-gradient(circle, #fff 60%, #f7cac9 100%);
+          border-radius: 50%;
+          opacity: 0.7;
+          pointer-events: none;
+          animation: sparkle 1.2s infinite;
+          filter: blur(1px);
+        }
+      `}</style>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="font-heading text-3xl md:text-4xl mb-4 text-gold-600">TAPASVI MANDALA ROYAL FOUNDER MEMBERSHIP</h2>
@@ -92,14 +158,16 @@ const MembershipTiers = () => {
             <motion.div
               key={tier.id}
               className="relative h-[600px] perspective-1000"
-              onHoverStart={() => setHoveredCard(tier.id)}
-              onHoverEnd={() => setHoveredCard(null)}
-              whileHover={{ scale: 1.02 }}
+              onHoverStart={() => !isMobile && setHoveredCard(tier.id)}
+              onHoverEnd={() => !isMobile && setHoveredCard(null)}
+              onClick={() => handleFlip(tier.id)}
+              onTouchEnd={() => handleFlip(tier.id)}
+              whileHover={!isMobile ? { scale: 1.02 } : {}}
               transition={{ duration: 0.3 }}
             >
               <motion.div
                 className="relative w-full h-full"
-                animate={{ rotateY: hoveredCard === tier.id ? 180 : 0 }}
+                animate={{ rotateY: (!isMobile && hoveredCard === tier.id) || (isMobile && flippedMobile === tier.id) ? 180 : 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 style={{ transformStyle: 'preserve-3d' }}
               >
@@ -118,34 +186,30 @@ const MembershipTiers = () => {
                       Most Popular
                     </div>
                   )}
-                  
-                  <div className="p-8 pt-12 relative z-10">
-                    <div className="text-center mb-8">
-                      <h3 className={`font-heading text-3xl ${tier.highlightColor} mb-1 font-bold`}>{tier.name}</h3>
-                      <p className={`${tier.id === 'platinum' ? 'text-blue-100' : 'text-maroon-600'} mb-4`}>{tier.duration}</p>
-                      <div className="flex justify-center items-end mb-2">
-                        <span className={`text-4xl font-heading font-bold ${tier.id === 'platinum' ? 'text-white' : 'text-maroon-700'}`}>{tier.totalBaseRate}</span>
-                      </div>
-                      <p className={`text-sm ${tier.id === 'platinum' ? 'text-blue-100' : 'text-maroon-600'}`}>Base investment (excl. taxes)</p>
+                  <div className="flex flex-col items-center p-8 pt-12 relative z-10 mb-8">
+                    <img src="/bgremflower.png" alt="Tapasvi Mandala" className="w-20 h-20 mb-4" />
+                    <h3 className={`font-heading text-3xl ${tier.highlightColor} mb-1 font-bold`}>{tier.name}</h3>
+                    <p className={`${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'} mb-2`}>{tier.duration}</p>
+                    <div className="flex justify-center items-end mb-2">
+                      <span className={`text-4xl font-heading font-bold ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.totalBaseRate}</span>
                     </div>
-
-                    <div className="space-y-4 mb-8">
-                      <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-blue-400 text-blue-100' : 'border-maroon-200'} pb-2`}>
-                        <span className={tier.id === 'platinum' ? 'text-blue-100' : 'text-maroon-600'}>Daily Rate:</span>
-                        <span className={`font-medium ${tier.id === 'platinum' ? 'text-white' : 'text-maroon-700'}`}>{tier.baseRate}</span>
-                      </div>
-                      <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-blue-400 text-blue-100' : 'border-maroon-200'} pb-2`}>
-                        <span className={tier.id === 'platinum' ? 'text-blue-100' : 'text-maroon-600'}>Total Nights:</span>
-                        <span className={`font-medium ${tier.id === 'platinum' ? 'text-white' : 'text-maroon-700'}`}>{tier.nights}</span>
-                      </div>
-                      <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-blue-400 text-blue-100' : 'border-maroon-200'} pb-2`}>
-                        <span className={tier.id === 'platinum' ? 'text-blue-100' : 'text-maroon-600'}>Room Category:</span>
-                        <span className={`font-medium ${tier.id === 'platinum' ? 'text-white' : 'text-maroon-700'}`}>{tier.roomCategory}</span>
-                      </div>
+                    <p className={`text-sm ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}`}>Base investment (excl. taxes)</p>
+                  </div>
+                  <div className="space-y-4 mb-8 px-8">
+                    <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-[#b76e79] text-[#b76e79]' : 'border-maroon-200' } pb-2`}>
+                      <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}>Daily Rate:</span>
+                      <span className={`font-medium ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.baseRate}</span>
+                    </div>
+                    <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-[#b76e79] text-[#b76e79]' : 'border-maroon-200' } pb-2`}>
+                      <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}>Total Nights:</span>
+                      <span className={`font-medium ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.nights}</span>
+                    </div>
+                    <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-[#b76e79] text-[#b76e79]' : 'border-maroon-200' } pb-2`}>
+                      <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}>Room Category:</span>
+                      <span className={`font-medium ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.roomCategory}</span>
                     </div>
                   </div>
                 </div>
-
                 {/* Back of card */}
                 <div
                   className={`absolute inset-0 rounded-xl overflow-hidden border-2 ${tier.borderColor}`}
@@ -162,30 +226,25 @@ const MembershipTiers = () => {
                     <h3 className={`font-heading text-2xl ${tier.highlightColor} mb-6 text-center font-bold`}>
                       {tier.name} Benefits
                     </h3>
-                    
                     <div className="flex-grow overflow-y-auto">
                       <div className="space-y-3 mb-6">
                         {tier.benefits.map((benefit, index) => (
                           <div key={index} className="flex items-start">
                             <span className={`${tier.highlightColor} mr-2`}>•</span>
-                            <span className={tier.id === 'platinum' ? 'text-white' : 'text-maroon-700'}>{benefit}</span>
+                            <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}>{benefit}</span>
                           </div>
                         ))}
                       </div>
                     </div>
-
-                    <div className="mt-6">
-                    <button
-                        className={`w-full px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 ${
-                        tier.recommended
-                            ? 'bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-500 text-white hover:from-yellow-600 hover:via-yellow-700 hover:to-yellow-600 shadow-lg hover:shadow-xl' 
-                            : tier.id === 'platinum'
-                            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700'
-                            : 'bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400'
-                      }`}
-                    >
-                      Select {tier.name}
-                    </button>
+                    <div className="mt-6 relative">
+                      <motion.button
+                        className={`w-full px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 relative overflow-hidden ${tier.button} ${tier.glow} ${tier.sparkle}`}
+                        whileHover={{ scale: 1.12 }}
+                        animate={{ scale: [1, 1.15, 0.97, 1.12, 1] }}
+                        transition={{ repeat: Infinity, duration: 1.4, type: 'spring', stiffness: 300, damping: 10 }}
+                      >
+                        Select {tier.name}
+                      </motion.button>
                     </div>
                   </div>
                 </div>

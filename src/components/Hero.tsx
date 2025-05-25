@@ -25,7 +25,7 @@ const slides = [
     type: 'video',
     src: 'https://videos.pexels.com/video-files/7077051/7077051-hd_1920_1080_30fps.mp4',
     alt: 'Peaceful natural landscape at our retreat',
-    heading: '67 Years of Trust',
+    heading: '60+ Years of Trust',
     subheading: 'Highlights the spiritual and historical depth.',
     description:
       'Be a catalyst in a global movement where your support blends Santhigiri rich spiritual heritage with cutting-edge Ayurveda, nurturing peace and well-being across the world.',
@@ -50,7 +50,7 @@ const Hero = () => {
   }, []);
 
   const scrollToNext = () => {
-    const nextSection = document.getElementById('about');
+    const nextSection = document.getElementById('logo-section');
     nextSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -67,7 +67,7 @@ const Hero = () => {
                 : 'opacity-0 translate-x-full z-0'
             } ${isTransitioning ? 'bg-beige-100' : ''}`}
           >
-            <div className="w-full h-full sm:h-full flex items-center justify-center aspect-[16/9] sm:aspect-auto">
+            <div className="w-full h-full flex items-center justify-center">
               {slide.type === 'video' ? (
                 <video
                   autoPlay
@@ -75,7 +75,7 @@ const Hero = () => {
                   loop
                   className={`w-full h-full ${
                     isTransitioning ? 'opacity-0' : 'opacity-100'
-                  } object-contain sm:object-cover transition-opacity duration-300`}
+                  } object-cover transition-opacity duration-300`}
                 >
                   <source src={slide.src} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -86,7 +86,7 @@ const Hero = () => {
                   alt={slide.alt}
                   className={`w-full h-full ${
                     isTransitioning ? 'opacity-0' : 'opacity-100'
-                  } object-contain sm:object-cover transition-opacity duration-300`}
+                  } object-cover transition-opacity duration-300`}
                 />
               )}
             </div>

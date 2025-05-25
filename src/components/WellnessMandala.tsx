@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const WellnessMandala = () => {
@@ -8,6 +8,7 @@ const WellnessMandala = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [mobileDirection, setMobileDirection] = useState<'left' | 'right'>('right');
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Auto-play effect
@@ -175,6 +176,20 @@ const WellnessMandala = () => {
     setTouchEndX(null);
   };
 
+  // Responsive check
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
+  // Handlers for mobile navigation
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const handlePrevMobile = () => {
+    setMobileDirection('left');
+    setMobileIndex((prev) => (prev - 1 + wellnessExperiences.length) % wellnessExperiences.length);
+  };
+  const handleNextMobile = () => {
+    setMobileDirection('right');
+    setMobileIndex((prev) => (prev + 1) % wellnessExperiences.length);
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-beige-50 to-beige-100 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,theme(colors.maroon.100/0.1),transparent_70%)] pointer-events-none"></div>
@@ -212,13 +227,55 @@ const WellnessMandala = () => {
           </h3>
         </div>
 
+        {/* Mobile: Single Slide View */}
+        <div className="block sm:hidden max-w-md mx-auto">
+          <div className="flex items-center justify-between mb-4">
+            <button onClick={handlePrevMobile} className="p-2 rounded-full bg-gold-100 text-gold-600 hover:bg-gold-200 transition"><ChevronLeft size={28} /></button>
+            <span className="font-heading text-lg text-gold-600">{wellnessExperiences[mobileIndex].title}</span>
+            <button onClick={handleNextMobile} className="p-2 rounded-full bg-gold-100 text-gold-600 hover:bg-gold-200 transition"><ChevronRight size={28} /></button>
+          </div>
+          <div
+            className="relative"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <AnimatePresence initial={false} custom={mobileDirection}>
+              <motion.div
+                key={mobileIndex}
+                custom={mobileDirection}
+                initial={{ x: mobileDirection === 'right' ? 300 : -300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: mobileDirection === 'right' ? -300 : 300, opacity: 0 }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                className="rounded-xl shadow-lg border border-gold-200 bg-beige-100/80 backdrop-blur-sm overflow-hidden relative"
+              >
+                <div className="relative w-full h-64">
+                  <img src={wellnessExperiences[mobileIndex].image} alt={wellnessExperiences[mobileIndex].title} className="w-full h-full object-cover" />
+                  {/* Overlay for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/70 via-maroon-800/40 to-transparent" />
+                </div>
+                <div className="relative z-10 p-4 -mt-12">
+                  <div className="bg-maroon-900/60 rounded-lg p-4 shadow-lg">
+                    <h4 className="font-heading text-xl text-gold-300 mb-2 drop-shadow-lg">{wellnessExperiences[mobileIndex].title}</h4>
+                    <p className="text-beige-100 mb-2 drop-shadow">{wellnessExperiences[mobileIndex].description}</p>
+                    <ul className="list-disc list-inside text-gold-200 text-sm pl-2">
+                      {wellnessExperiences[mobileIndex].items.map((item, i) => (
+                        <li key={i} className="drop-shadow">{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Desktop/Tablet: Carousel */}
         <div 
-          className="relative h-[400px] sm:h-[600px] perspective-1000 mb-20"
+          className="hidden sm:block relative h-[400px] sm:h-[600px] perspective-1000 mb-20"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
           ref={carouselRef}
         >
           <div className="relative w-full h-full flex items-center justify-center">
@@ -232,8 +289,8 @@ const WellnessMandala = () => {
               const angle = (offset * (360 / total)) % 360;
               const radians = (angle * Math.PI) / 180;
               // Adjust radius for better mobile view
-              const radiusX = window.innerWidth < 640 ? 300 : 400;
-              const radiusZ = window.innerWidth < 640 ? 160 : 220;
+              const radiusX = 400;
+              const radiusZ = 220;
               const translateX = Math.sin(radians) * radiusX;
               const translateZ = Math.cos(radians) * radiusZ - radiusZ;
               // Symmetric scale and opacity
@@ -271,16 +328,13 @@ const WellnessMandala = () => {
                 >
                   {/* Enhanced Golden Border */}
                   <div className="absolute -inset-[3px] rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 z-0 animate-gradient-x"></div>
-                  
                   {/* Inner Shadow Overlay - Lighter */}
                   <div className="absolute inset-0 rounded-xl shadow-[inset_0_0_8px_rgba(234,179,8,0.08)] z-10 pointer-events-none" />
-                  
                   <div className="relative w-full h-full group z-20 bg-white rounded-xl overflow-hidden">
                     {/* Subtle golden glow */}
                     <div className={`absolute inset-0 rounded-xl transition-opacity duration-300
                       shadow-[0_0_15px_rgba(234,179,8,0.08)] ${isCenter ? 'group-hover:shadow-[0_0_25px_rgba(234,179,8,0.15)]' : ''}`} 
                     />
-                    
                     <img 
                       src={experience.image} 
                       alt={experience.title}
@@ -288,64 +342,24 @@ const WellnessMandala = () => {
                         isCenter ? 'group-hover:scale-105' : ''
                       }`}
                     />
-                    
-                    {/* Slide number indicator with enhanced golden styling */}
-                    <div className={`absolute top-4 right-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full 
-                      bg-gradient-to-br from-gold-300/20 to-gold-600/20 backdrop-blur-sm
-                      flex items-center justify-center border-2 border-gold-300/40 transform rotate-12
-                      shadow-[0_0_10px_rgba(234,179,8,0.2)]
-                      ${isCenter ? 'group-hover:rotate-0 group-hover:shadow-[0_0_15px_rgba(234,179,8,0.3)]' : ''} 
-                      transition-all duration-300`}>
-                      <span className={`font-heading text-gold-300 text-base sm:text-lg transform -rotate-12 
-                        ${isCenter ? 'group-hover:rotate-0' : ''} transition-all duration-300`}>
-                        {index + 1}
-                      </span>
-                    </div>
-
-                    {/* Much lighter overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-beige-100/40 via-beige-50/20 to-transparent 
-                      flex flex-col justify-end p-4 sm:p-8 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
-                      <h3 className={`text-xl sm:text-2xl font-heading text-gold-300 mb-2 sm:mb-3 font-bold transition-transform duration-300 ${
-                        isCenter ? 'group-hover:scale-105' : ''
-                      }`}>
-                        {experience.title}
-                      </h3>
-                      <p className={`text-maroon-700 text-sm sm:text-base mb-3 sm:mb-4 transition-transform duration-300 ${
-                        isCenter ? 'group-hover:translate-y-0' : ''
-                      }`}>
-                        {experience.description}
-                      </p>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedExperience(selectedExperience === index ? null : index);
-                        }}
-                        className={`inline-flex items-center text-gold-300 hover:text-gold-400 transition-all duration-300 text-sm sm:text-base ${
-                          isCenter ? 'group-hover:translate-x-2' : ''
-                        }`}
-                      >
-                        {selectedExperience === index ? 'Show Less' : 'Know More'} 
-                        <span className="ml-2">→</span>
-                      </button>
-
-                      {selectedExperience === index && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, ease: 'easeOut' }}
-                          className="mt-3 sm:mt-4 bg-beige-50/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-gold-300/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            {experience.items.map((item, idx) => (
-                              <li key={idx} className="text-maroon-700 text-sm sm:text-base flex items-center">
-                                <span className="text-gold-400 mr-2">•</span>
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </motion.div>
-                      )}
+                    {/* Overlay for text readability */}
+                    <div className="absolute bottom-0 left-0 w-full p-4 sm:p-8 z-20 flex flex-col justify-end"
+                      style={{height: '50%'}}
+                    >
+                      <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-maroon-900/80 via-maroon-800/40 to-transparent rounded-b-xl" />
+                      <div className="relative z-10">
+                        <h3 className="text-xl sm:text-2xl font-heading text-gold-300 mb-2 sm:mb-3 font-bold drop-shadow-lg">
+                          {experience.title}
+                        </h3>
+                        <p className="text-beige-100 text-sm sm:text-base mb-3 sm:mb-4 drop-shadow">
+                          {experience.description}
+                        </p>
+                        <ul className="list-disc list-inside text-gold-200 text-xs sm:text-base pl-2 drop-shadow">
+                          {experience.items.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </motion.div>

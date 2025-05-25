@@ -6,23 +6,18 @@ const Testimonials = () => {
   
   const testimonials = [
     {
-      quote: "My experience at Om Kalyanam Santhigiri was truly transformative. The personalized Ayurvedic treatments and spiritual guidance helped me reconnect with my inner self in ways I never thought possible.",
-      author: "Priya Sharma",
-      title: "Wellness Enthusiast",
-      image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      quote: "Om Kalyanam Santhigiri Dehradun has been conceptualized keeping in mind the traditional and modern ways of lifestyle. Fortunate to see this amazing place grow from a seed upwards. Wish you all the best for this gift to the future generations.",
+      author: "General Vijay Kumar Singh PVSM, AVSM, YSM, ADC",
+      title: "Governor of Mizoram",
+      image: "https://thechanakyadialogues.com/images/general-vijay-kumar-singh.png"
     },
     {
-      quote: "As a Royal Founder Member, I appreciate the exceptional care and attention to detail in every aspect of my stays. The 8 dimensions approach has created profound changes in my wellbeing and outlook on life.",
-      author: "Rajesh Khanna",
-      title: "Business Leader",
-      image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      quote: "The sacred environment and authentic practices at Om Kalyanam Santhigiri provided the perfect setting for deep healing. The therapists are truly gifted, and the teachings have stayed with me long after my retreat.",
-      author: "Anjali Patel",
-      title: "Yoga Teacher",
-      image: "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      quote: "This is more than a membership—its a sacred commitment to live with presence, care, and clarity. It becomes a way of being—rooted, intentional, and quietly transformative.",
+      author: "Ashwath Bhat",
+      title: "Actor, Theatre artist",
+      image: "https://th.bing.com/th/id/OIP.b9MuuX1CegJCKwvre9T7IAHaFA?rs=1&pid=ImgDetMain"
     }
+  
   ];
 
   useEffect(() => {
@@ -56,11 +51,11 @@ const Testimonials = () => {
             >
               <div className="bg-beige-100/80 backdrop-blur-sm border border-gold-200 rounded-xl p-8 md:p-10 shadow-lg">
                 <div className="flex flex-col md:flex-row items-center gap-8">
-                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-gold-200">
+                  <div className="w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden flex-shrink-0 border-4 border-gold-200 shadow-lg">
                     <img 
                       src={testimonial.image} 
                       alt={testimonial.author}
-                      className="w-full h-full object-cover" 
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" 
                     />
                   </div>
                   
@@ -77,8 +72,10 @@ const Testimonials = () => {
                     </blockquote>
                     
                     <div>
-                      <h4 className="font-medium text-gold-600">{testimonial.author}</h4>
-                      <p className="text-maroon-600">{testimonial.title}</p>
+                      <h4 className="text-2xl font-bold bg-gradient-to-r from-gold-600 to-gold-700 bg-clip-text text-transparent hover:from-gold-700 hover:to-gold-800 transition-all duration-300">
+                        {testimonial.author}
+                      </h4>
+                      <p className="text-maroon-600 font-medium mt-2">{testimonial.title}</p>
                     </div>
                   </div>
                 </div>

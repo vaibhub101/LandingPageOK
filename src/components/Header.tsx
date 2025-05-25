@@ -50,10 +50,14 @@ const Header = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
-            {['Home', 'About', 'Wellness', 'Membership', 'Experiences'].map((item, index) => (
+            {["Home", "About", "Membership", "Experiences"].map((item, index) => (
               <li key={item}>
                 <a
-                  href={`#${item.toLowerCase()}`}
+                  href={
+                    item === 'Experiences'
+                      ? '#special-programs'
+                      : `#${item.toLowerCase()}`
+                  }
                   className={`text-maroon-700 hover:text-gold-600 transition-all duration-500 ${
                     isVisible 
                       ? 'opacity-100 translate-y-0' 
@@ -116,10 +120,14 @@ const Header = () => {
       {mobileMenuOpen && (
         <nav className="md:hidden bg-beige-50/95 backdrop-blur-sm">
           <ul className="flex flex-col py-4">
-            {['Home', 'About', 'Wellness', 'Membership', 'Experiences'].map((item) => (
+            {["Home", "About", "Membership", "Experiences"].map((item) => (
               <li key={item} className="py-2">
                 <a
-                  href={`#${item.toLowerCase()}`}
+                  href={
+                    item === 'Experiences'
+                      ? '#special-programs'
+                      : `#${item.toLowerCase()}`
+                  }
                   className="block px-4 text-maroon-700 hover:text-gold-600 transition-colors duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                 >
