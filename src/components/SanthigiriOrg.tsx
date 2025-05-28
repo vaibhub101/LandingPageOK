@@ -62,7 +62,7 @@ const SanthigiriOrg = () => {
       size: "md"
     },
     {
-      url: "https://i0.wp.com/swamigururethnam.com/wp-content/uploads/2023/11/Dhoni.jpg?w=1600&ssl=1",
+      url: "/ms dhoni santhigiri.jpeg",
       caption: "M.S. Dhoni and his wife Sakshi Dhoni visited Santhigiri Ashram",
       size: "sm"
     },

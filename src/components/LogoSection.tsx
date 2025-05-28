@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useEnquiryModal } from '../context/EnquiryModalContext';
 
 const LogoSection = () => {
+  const { openEnquiryModal } = useEnquiryModal();
+
   return (
     <section id="logo-section" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-beige-50 to-beige-100">
       {/* Corner Border Images
@@ -80,20 +83,79 @@ const LogoSection = () => {
             transition={{ delay: 0.5 }}
             className="mt-8 mb-16"
           >
-            <motion.a
-              href="#dimensions"
-              className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg md:text-xl font-medium hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg shadow-gold-500/20 hover:shadow-xl hover:shadow-gold-500/30 overflow-hidden"
-              animate={{ y: [0, -10, 0] }}
+            <motion.button
+              onClick={openEnquiryModal}
+              className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg md:text-xl font-medium overflow-hidden shadow-[0_0_15px_rgba(234,179,8,0.3)]"
+              whileHover={{ 
+                scale: 1.05,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10
+                }
+              }}
+              whileTap={{ scale: 0.9 }}
+              animate={{ 
+                y: [0, -8, 0],
+                scale: [1, 1.03, 1],
+                boxShadow: [
+                  "0 0 15px rgba(234,179,8,0.3)",
+                  "0 0 30px rgba(234,179,8,0.6)",
+                  "0 0 15px rgba(234,179,8,0.3)"
+                ]
+              }}
               transition={{
-                duration: 1,
-                repeat: Infinity,
-                ease: "easeInOut"
+                y: {
+                  duration: 1.2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeOut"
+                },
+                scale: {
+                  duration: 1.2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeOut"
+                },
+                boxShadow: {
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
               }}
             >
-              <span className="relative z-10 font-heading tracking-wide">Gift Your Family</span>
+              <motion.span 
+                className="relative z-10 font-heading tracking-wide"
+                animate={{
+                  opacity: [1, 0.7, 1],
+                  textShadow: [
+                    "0 0 5px rgba(255,255,255,0.3)",
+                    "0 0 15px rgba(255,255,255,0.6)",
+                    "0 0 5px rgba(255,255,255,0.3)"
+                  ]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                Gift Your Family
+              </motion.span>
               <div className="absolute inset-0 bg-gradient-to-r from-gold-400/20 to-gold-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute inset-0 bg-white/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 ease-out"></div>
-            </motion.a>
+              <motion.div 
+                className="absolute inset-0 bg-white/20 rounded-full"
+                initial={{ scale: 0 }}
+                whileHover={{ 
+                  scale: 1.8,
+                  transition: { 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 8
+                  }
+                }}
+              />
+            </motion.button>
           </motion.div>
 
           {/* Scroll indicator */}

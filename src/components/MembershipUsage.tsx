@@ -1,7 +1,12 @@
 import React from 'react';
 import { Info, Gift, Calendar, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useEnquiryModal } from '../context/EnquiryModalContext';
+import AnimatedEnquiryButton from './AnimatedEnquiryButton';
 
 const MembershipUsage = () => {
+  const { openEnquiryModal } = useEnquiryModal();
+  
   const usageCategories = [
     {
       icon: <Info size={24} />,
@@ -57,7 +62,7 @@ const MembershipUsage = () => {
     <section className="py-20 bg-gradient-to-b from-beige-50 to-beige-100 relative">
       <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-gold-500/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/3 bg-maroon-500/10 blur-3xl rounded-full"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="font-heading text-3xl md:text-4xl mb-4 text-gold-600">How to Use Your Founder Membership</h2>
@@ -79,7 +84,7 @@ const MembershipUsage = () => {
                 </div>
                 <h3 className="font-heading text-xl text-gold-600">{category.title}</h3>
               </div>
-              
+
               <ul className="space-y-3">
                 {category.items.map((item, i) => (
                   <li key={i} className="flex items-start">
@@ -91,21 +96,18 @@ const MembershipUsage = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="max-w-3xl mx-auto mt-12 text-center">
           <div className="bg-beige-100/80 border border-gold-200 rounded-lg p-6 shadow-lg">
             <p className="text-maroon-700 italic">
               "Your membership is more than an investment in wellness—it's a commitment to your transformation and a partnership in our sacred mission to create a haven for holistic healing."
             </p>
           </div>
-          
+
           <div className="mt-8">
-            <a 
-              href="#contact"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-gold-600 to-gold-700 text-white font-medium rounded-lg hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
+            <AnimatedEnquiryButton>
               Apply for Membership
-            </a>
+            </AnimatedEnquiryButton>
           </div>
         </div>
       </div>

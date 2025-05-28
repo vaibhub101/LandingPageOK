@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useEnquiryModal } from '../context/EnquiryModalContext';
+import AnimatedEnquiryButton from './AnimatedEnquiryButton';
 
 const slides = [
   {
@@ -35,6 +38,7 @@ const slides = [
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const { openEnquiryModal } = useEnquiryModal();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -114,28 +118,24 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-<div className="relative z-30 h-full flex flex-col justify-center items-center px-4 text-center">
-  <div key={activeSlide} className="max-w-4xl mx-auto animate-fade-in transition-opacity duration-1200">
-    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-4 text-earth-100 leading-tight">
-      <span className="block">{slides[activeSlide].heading}</span>
-      <span className="block text-gold-300">{slides[activeSlide].subheading}</span>
-    </h1>
+      <div className="relative z-30 h-full flex flex-col justify-center items-center px-4 text-center">
+        <div key={activeSlide} className="max-w-4xl mx-auto animate-fade-in transition-opacity duration-1200">
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-4 text-earth-100 leading-tight">
+            <span className="block">{slides[activeSlide].heading}</span>
+            <span className="block text-gold-300">{slides[activeSlide].subheading}</span>
+          </h1>
 
-    <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-earth-200">
-      {slides[activeSlide].description}
-    </p>
-  </div>
+          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-earth-200">
+            {slides[activeSlide].description}
+          </p>
+        </div>
   
-    <div className="flex flex-col sm:flex-row justify-center gap-4">
-      <a
-        href="#membership"
-            className="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-      >
-        Explore Royal Founder Membership
-      </a>
-    </div>
-  
-</div>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <AnimatedEnquiryButton>
+            Explore Royal Founder Membership
+          </AnimatedEnquiryButton>
+        </div>
+      </div>
 
       {/* Scroll Down Indicator */}
       <button

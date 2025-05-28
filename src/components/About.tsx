@@ -27,26 +27,9 @@ const About = () => {
           </div>
 
           <div className="animate-fade-up">
-            <p className="text-lg leading-relaxed mb-6 text-maroon-700">
+            <p className="text-lg leading-relaxed text-maroon-700">
               Om Kalyanam Santhigiri Wellness Resort, inspired by Santhigiri Ashram's divine vision, promotes universal peace and holistic well-being through self-realization and service. Fostering compassion, unity, and spiritual awakening, it harmonizes body, mind, and soul with divine will. Offering Ayurvedic therapies, meditation, and sacred rituals in a serene setting, this unique resort unites guests across faiths for healing, inner balance, and divine connection, shining as a beacon of clarity, purpose, and peace.
             </p>
-            {/* <p className="text-lg leading-relaxed mb-6 text-earth-200">
-              The essence of Omkalyanam lies in harmonizing individual life with divine will, facilitated through our comprehensive 8 Dimensions of Transformational Wellness. Each dimension addresses a fundamental aspect of human existence, creating a balanced approach to healing and growth.
-            </p>
-            <p className="text-lg leading-relaxed mb-8 text-earth-200">
-              Whether through rituals, community service, or spiritual practices, Omkalyanam Santhigiri serves as a beacon for those seeking profound healing and personal evolution. Our approach honors tradition while embracing innovation, creating a unique space for authentic transformation.
-            </p> */}
-            <a 
-              href="#wellness"
-              className="group relative inline-block px-8 py-4 bg-gradient-to-r from-gold-600 to-gold-700 text-white 
-              rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(234,179,8,0.2)] 
-              hover:shadow-[0_8px_20px_rgba(234,179,8,0.4)] transform hover:-translate-y-1 
-              active:translate-y-0 transition-all duration-300"
-            >
-              <span className="relative z-10">Explore Our Philosophy</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-gold-500 to-gold-600 
-              transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-            </a>
           </div>
         </div>
       </div>

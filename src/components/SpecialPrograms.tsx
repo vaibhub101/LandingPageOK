@@ -154,15 +154,6 @@ const SpecialPrograms = () => {
             </div>
           ))}
         </div>
-        
-        <div className="text-center mt-16">
-          <a 
-            href="#contact"
-            className="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full text-lg hover:from-gold-700 hover:to-gold-800 transition-all duration-300 shadow-lg"
-          >
-            Begin Your Journey
-          </a>
-        </div>
       </div>
     </section>
   );

@@ -48,16 +48,53 @@
     @apply bg-beige-50/80 backdrop-blur-sm border border-maroon-100/20 rounded-lg shadow-lg shadow-maroon-950/5;
   }
 
+  /* Updated unified button styles */
   .button-primary {
-    @apply px-6 py-2 bg-gradient-to-r from-golden-500 to-golden-600 text-white rounded-full 
-           shadow-lg shadow-golden-600/20 hover:shadow-golden-600/30 
-           transition-all duration-300 ease-out hover:scale-105;
+    @apply relative px-8 py-4 bg-gradient-to-r from-gold-600 to-gold-700 text-white rounded-full 
+           font-bold tracking-wide text-lg
+           shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40
+           transition-all duration-300 ease-out
+           hover:scale-105 hover:-translate-y-1
+           active:scale-95 active:translate-y-0
+           before:absolute before:inset-0 before:rounded-full
+           before:bg-gradient-to-r before:from-white/20 before:to-transparent
+           before:opacity-0 hover:before:opacity-100
+           before:transition-opacity before:duration-300
+           overflow-hidden;
   }
 
   .button-secondary {
-    @apply px-6 py-2 bg-gradient-to-r from-maroon-500 to-maroon-600 text-white rounded-full 
-           shadow-lg shadow-maroon-600/20 hover:shadow-maroon-600/30 
-           transition-all duration-300 ease-out hover:scale-105;
+    @apply relative px-8 py-4 bg-gradient-to-r from-maroon-600 to-maroon-700 text-white rounded-full 
+           font-bold tracking-wide text-lg
+           shadow-lg shadow-maroon-500/20 hover:shadow-maroon-500/40
+           transition-all duration-300 ease-out
+           hover:scale-105 hover:-translate-y-1
+           active:scale-95 active:translate-y-0
+           before:absolute before:inset-0 before:rounded-full
+           before:bg-gradient-to-r before:from-white/20 before:to-transparent
+           before:opacity-0 hover:before:opacity-100
+           before:transition-opacity before:duration-300
+           overflow-hidden;
+  }
+
+  /* Button animations */
+  @keyframes button-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @keyframes button-glow {
+    0%, 100% { box-shadow: 0 0 15px rgba(234,179,8,0.4); }
+    50% { box-shadow: 0 0 25px rgba(234,179,8,0.6); }
+  }
+
+  .button-hover-effect {
+    animation: button-bounce 2s infinite ease-in-out,
+               button-glow 2s infinite ease-in-out;
+  }
+
+  .button-hover-effect:hover {
+    animation: none;
   }
 }
 

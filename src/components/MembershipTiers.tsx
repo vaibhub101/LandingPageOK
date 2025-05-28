@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import AnimatedEnquiryButton from './AnimatedEnquiryButton';
 
 const MembershipTiers = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -29,7 +30,7 @@ const MembershipTiers = () => {
       borderColor: 'border-[#C0C0C0]',
       highlightColor: 'text-gray-700',
       metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f8f8f8]/60 before:via-white/80 before:to-[#e3e3e3]/60 before:opacity-70',
-      button: 'bg-gradient-to-r from-[#e3e3e3] to-[#bdbdbd] text-gray-700',
+      button: 'bg-gradient-to-r from-gray-600 to-gray-700 text-white',
       glow: 'hover:shadow-[0_0_24px_6px_rgba(192,192,192,0.5)]',
       sparkle: 'sparkle-silver'
     },
@@ -56,7 +57,7 @@ const MembershipTiers = () => {
       highlightColor: 'text-yellow-800',
       metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#fff8e1]/60 before:via-white/80 before:to-[#ffe082]/60 before:opacity-80',
       recommended: true,
-      button: 'bg-gradient-to-r from-[#ffe082] to-[#ffb300] text-yellow-900',
+      button: 'bg-gradient-to-r from-yellow-600 to-yellow-700 text-white',
       glow: 'hover:shadow-[0_0_32px_8px_rgba(255,215,0,0.5)]',
       sparkle: 'sparkle-gold'
     },
@@ -83,7 +84,7 @@ const MembershipTiers = () => {
       borderColor: 'border-[#b76e79]',
       highlightColor: 'text-[#b76e79]',
       metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#ffe5d9]/60 before:via-white/80 before:to-[#f7cac9]/60 before:opacity-70',
-      button: 'bg-gradient-to-r from-[#f7cac9] to-[#b76e79] text-[#b76e79]',
+      button: 'bg-gradient-to-r from-[#9a4f58] to-[#7d3f47] text-white',
       glow: 'hover:shadow-[0_0_32px_8px_rgba(183,110,121,0.5)]',
       sparkle: 'sparkle-rose'
     }
@@ -107,6 +108,23 @@ const MembershipTiers = () => {
           50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
           100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
         }
+
+        @keyframes pulse-glow {
+          0% { box-shadow: 0 0 15px rgba(255,255,255,0.5), 0 0 25px currentColor, 0 0 35px currentColor; }
+          50% { box-shadow: 0 0 25px rgba(255,255,255,0.5), 0 0 35px currentColor, 0 0 55px currentColor; }
+          100% { box-shadow: 0 0 15px rgba(255,255,255,0.5), 0 0 25px currentColor, 0 0 35px currentColor; }
+        }
+
+        @keyframes shine {
+          0% { background-position: -100% 0; }
+          100% { background-position: 200% 0; }
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+
         .sparkle-silver::after {
           content: '';
           position: absolute;
@@ -143,6 +161,61 @@ const MembershipTiers = () => {
           animation: sparkle 1.2s infinite;
           filter: blur(1px);
         }
+
+        .membership-button {
+          transform: perspective(1000px) translateZ(0);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          font-weight: bold;
+          letter-spacing: 0.5px;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          padding: 1rem 2rem;
+          border-radius: 9999px;
+        }
+
+        .membership-button::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to right, rgba(255,255,255,0.2), transparent);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .membership-button:hover::before {
+          opacity: 1;
+        }
+
+        .membership-button:hover {
+          transform: perspective(1000px) translateZ(20px) translateY(-5px);
+        }
+
+        .membership-button:active {
+          transform: perspective(1000px) translateZ(10px) translateY(0);
+        }
+
+        .btn-silver, .btn-gold, .btn-platinum {
+          color: white;
+          font-weight: 800;
+          letter-spacing: 0.5px;
+          animation: float 3s infinite ease-in-out;
+        }
+
+        .btn-silver {
+          background: linear-gradient(to right, #718096, #4A5568);
+          box-shadow: 0 0 20px rgba(192,192,192,0.5);
+        }
+
+        .btn-gold {
+          background: linear-gradient(to right, #D69E2E, #B7791F);
+          box-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+
+        .btn-platinum {
+          background: linear-gradient(to right, #9a4f58, #7d3f47);
+          box-shadow: 0 0 20px rgba(183,110,121,0.5);
+        }
       `}</style>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
@@ -155,7 +228,7 @@ const MembershipTiers = () => {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {tiers.map((tier) => (
-            <motion.div
+            <motion.div 
               key={tier.id}
               className="relative h-[600px] perspective-1000"
               onHoverStart={() => !isMobile && setHoveredCard(tier.id)}
@@ -236,15 +309,19 @@ const MembershipTiers = () => {
                         ))}
                       </div>
                     </div>
-                    <div className="mt-6 relative">
-                      <motion.button
-                        className={`w-full px-6 py-3 rounded-full font-bold text-lg transition-all duration-300 relative overflow-hidden ${tier.button} ${tier.glow} ${tier.sparkle}`}
-                        whileHover={{ scale: 1.12 }}
-                        animate={{ scale: [1, 1.15, 0.97, 1.12, 1] }}
-                        transition={{ repeat: Infinity, duration: 1.4, type: 'spring', stiffness: 300, damping: 10 }}
-                      >
-                        Select {tier.name}
-                      </motion.button>
+                    <div className="mt-12 pt-8 border-t border-gold-200">
+                      <div className="flex justify-center w-full">
+                        <AnimatedEnquiryButton
+                          variant={
+                            tier.id === 'silver' ? 'primary' : 
+                            tier.id === 'gold' ? 'primary' : 
+                            'secondary'
+                          }
+                          className="text-center"
+                        >
+                          Select {tier.name}
+                        </AnimatedEnquiryButton>
+                      </div>
                     </div>
                   </div>
                 </div>
