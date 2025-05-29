@@ -44,8 +44,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-gold-600" />
-                <a href="mailto:info@omkalyanam.org" className="hover:text-gold-600 transition-colors">
-                  info@omkalyanam.org
+                <a href="mailto:info@omkalyanam.com" className="hover:text-gold-600 transition-colors">
+                  info@omkalyanam.com
                 </a>
               </li>
               <li className="flex items-start">
@@ -71,7 +71,9 @@ const Footer = () => {
                 <Facebook size={20} />
               </motion.a>
               <motion.a
-                href="#"
+                href="https://www.instagram.com/omkalyanam/"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gold-600 text-white p-2 rounded-full hover:bg-gold-700 transition-colors"
