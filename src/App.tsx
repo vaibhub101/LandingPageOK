@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import LogoSection from './components/LogoSection';
@@ -18,13 +18,36 @@ import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import EnquiryForm from './components/EnquiryForm';
 import { EnquiryModalProvider } from './context/EnquiryModalContext';
+import WelcomeScreen from './components/WelcomeScreen';
 // import PhotoCollage from './components/PhotoCollage';
 
 function App() {
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  useEffect(() => {
+    // Show welcome screen for 2.0 seconds before starting fade out
+    const timer = setTimeout(() => {
+      setShowWelcome(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <EnquiryModalProvider>
       <Router>
-        <div className="min-h-screen bg-gradient-to-b from-beige-50 via-beige-100 to-beige-200 text-maroon-900 font-body">
+        <WelcomeScreen 
+          isVisible={showWelcome} 
+          onAnimationComplete={() => setShowWelcome(false)} 
+        />
+        <div 
+          className={`min-h-screen bg-gradient-to-b from-beige-50 via-beige-100 to-beige-200 text-maroon-900 font-body transition-all duration-1000 ${
+            showWelcome ? 'opacity-0' : 'opacity-100'
+          }`}
+          style={{
+            transitionDelay: '0.8s'
+          }}
+        >
           {/* Gradient overlays */}
           <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_right,theme(colors.golden.100/0.15),transparent_70%)] pointer-events-none"></div>
           <div className="fixed inset-0 bg-[radial-gradient(circle_at_bottom_left,theme(colors.maroon.100/0.1),transparent_70%)] pointer-events-none"></div>

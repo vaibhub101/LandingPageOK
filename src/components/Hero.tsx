@@ -71,7 +71,7 @@ const Hero = () => {
                 : 'opacity-0 translate-x-full z-0'
             } ${isTransitioning ? 'bg-beige-100' : ''}`}
           >
-            <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center overflow-hidden">
               {slide.type === 'video' ? (
                 <video
                   autoPlay
@@ -85,13 +85,21 @@ const Hero = () => {
                   Your browser does not support the video tag.
                 </video>
               ) : (
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  className={`w-full h-full ${
-                    isTransitioning ? 'opacity-0' : 'opacity-100'
-                  } object-cover transition-opacity duration-300`}
-                />
+                <div className="relative w-full h-full">
+                  <img
+                    src={slide.src}
+                    alt={slide.alt}
+                    className={`absolute w-full h-full ${
+                      isTransitioning ? 'opacity-0' : 'opacity-100'
+                    } object-cover transition-opacity duration-300 transform-gpu scale-100 md:scale-100`}
+                    style={{
+                      objectPosition: 'center center',
+                      objectFit: 'cover',
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  />
+                </div>
               )}
             </div>
           </div>

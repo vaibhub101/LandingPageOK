@@ -33,12 +33,9 @@ const FinalMessage = () => {
             Let us guide you towards a life of balance, vitality, and inner peace.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex justify-center">
             <AnimatedEnquiryButton>
               Join Our Community
-            </AnimatedEnquiryButton>
-            <AnimatedEnquiryButton variant="secondary">
-              Contact Us
             </AnimatedEnquiryButton>
           </div>
         </div>
