@@ -17,7 +17,8 @@ const WelcomeScreen = ({ isVisible, onAnimationComplete }: WelcomeScreenProps) =
           transition={{ 
             duration: 0.8,
             ease: "easeInOut",
-            exit: { delay: 2.0, duration: 0.8 }
+            delay: 0.4,
+            exit: { delay: 3.0, duration: 0.8 }
           }}
           onAnimationComplete={onAnimationComplete}
           className="fixed inset-0 z-50 flex items-center justify-center bg-transparent"
@@ -41,7 +42,7 @@ const WelcomeScreen = ({ isVisible, onAnimationComplete }: WelcomeScreenProps) =
               className="w-full h-full object-contain"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             />
           </motion.div>
         </motion.div>
