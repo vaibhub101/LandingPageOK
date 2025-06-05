@@ -54,7 +54,7 @@ const MembershipTiers = () => {
           <div className="w-24 h-1 bg-gold-600 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 gap-y-12 max-w-6xl mx-auto mb-80">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 gap-y-12 max-w-6xl mx-auto mb-32">
           {tiers.map((tier) => (
             <motion.div 
               key={tier.id}
