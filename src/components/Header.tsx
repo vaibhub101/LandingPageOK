@@ -93,10 +93,9 @@ const Header = () => {
             ))}
             <li>
               <AnimatedEnquiryButton 
-                className={`text-xs px-3 py-0.5 ${
-                  isVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-4'
+                className={`text-xs px-4 py-0 ${isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-4'
                 }`}
               >
                 Join Now
@@ -139,7 +138,7 @@ const Header = () => {
             ))}
             <li className="py-1.5">
               <AnimatedEnquiryButton 
-                className="text-xs px-3 py-0.5"
+                className="text-xs px-4 py-0"
               >
                 Join Now
               </AnimatedEnquiryButton>

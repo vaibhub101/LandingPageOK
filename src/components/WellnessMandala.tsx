@@ -161,7 +161,7 @@ const WellnessMandala = () => {
       ],
       image: "/images/wellness/spiritualom.jpg"
     },
-     {
+    {
       id: 'wisdom',
       title: 'Wisdom Miracle Programs',
       description: 'Inner Transformation Workshops',
@@ -251,9 +251,9 @@ const WellnessMandala = () => {
                   <div className="md:flex flex-grow">
                     <div className="md:w-2/5 relative">
                       <div className="h-64 md:h-full relative overflow-hidden">
-                        <img 
-                          src={experience.image} 
-                          alt={experience.title}
+                    <img 
+                      src={experience.image} 
+                      alt={experience.title}
                           className="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-105"
                         />
                         {/* Overlay gradient */}
@@ -262,19 +262,19 @@ const WellnessMandala = () => {
                     </div>
                     <div className="md:w-3/5 p-6 md:p-8 flex flex-col">
                       <h3 className="text-2xl font-heading text-gold-600 mb-3">
-                        {experience.title}
-                      </h3>
+                          {experience.title}
+                        </h3>
                       <p className="text-maroon-700 mb-4 flex-grow">
-                        {experience.description}
-                      </p>
+                          {experience.description}
+                        </p>
                       <ul className="space-y-2 mt-4 max-h-40 overflow-y-auto pr-2">
                         {experience.items.slice(0, 4).map((item, idx) => (
                           <li key={idx} className="flex items-start text-maroon-600">
                             <span className="text-gold-500 mr-2">•</span>
                             {item.title}
                           </li>
-                        ))}
-                      </ul>
+                          ))}
+                        </ul>
                       {experience.items.length > 4 && (
                         <button 
                           className="mt-4 text-gold-600 hover:underline self-start"
@@ -284,9 +284,9 @@ const WellnessMandala = () => {
                         </button>
                       )}
                     </div>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
             ))}
           </div>
         </div>
