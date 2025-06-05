@@ -40,19 +40,21 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center">
                 <Phone size={18} className="mr-2 text-gold-600" />
-                <span>+91 123 456 7890</span>
+                <span>+91-9266057728, +91-9266058676</span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-gold-600" />
-                <a href="mailto:info@omkalyanam.com" className="hover:text-gold-600 transition-colors">
-                  info@omkalyanam.com
+                <a href="mailto:info@tapasavimandala.com" className="hover:text-gold-600 transition-colors">
+                  info@tapasavimandala.com
                 </a>
               </li>
               <li className="flex items-start">
                 <MapPin size={18} className="mr-2 mt-1 text-gold-600" />
                 <span>
-                  Santhigiri Ashram, Pothencode,<br />
-                  Thiruvananthapuram, Kerala
+                  Misraspatti<br />
+                  Dehradun<br />
+                  Near UPES University<br />
+                  Pin 248197
                 </span>
               </li>
             </ul>

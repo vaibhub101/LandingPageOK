@@ -11,7 +11,7 @@ const SanthigiriOrg = () => {
     },
     {
       title: "Healthcare Excellence",
-      description: "250-bed Ayurveda & Siddha specialty hospital in South India",
+      description: "250 & 150 beded Ayurveda & Siddha specialty hospital in South India",
       icon: <Building2 className="w-6 h-6 text-gold-600" />
     },
     {
@@ -213,6 +213,10 @@ const SanthigiriOrg = () => {
                 {collaboration}
               </div>
             ))}
+            <div className="md:col-span-2 lg:col-span-3 bg-gold-500/10 rounded-lg p-6 text-maroon-700 text-center
+              hover:bg-gold-500/20 hover:text-gold-700 transition-all duration-300 cursor-pointer mt-4">
+              Including several prestigious government institutions and Navratna organizations
+            </div>
           </div>
         </div>
       </div>

@@ -1,73 +1,152 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Leaf, Heart, Shield, Flame,
-  Briefcase, Users, Mountain, Wind
+  Briefcase, Users, Mountain, Wind, X
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface WellnessItem {
+  title: string;
+  description: string;
+}
+
+interface Dimension {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  items: WellnessItem[];
+  image: string;
+}
 
 const WellnessDimensions = () => {
-  const dimensions = [
+  const [selectedItem, setSelectedItem] = useState<WellnessItem | null>(null);
+
+  const dimensions: Dimension[] = [
     {
       icon: <Leaf className="h-8 w-8 text-gold-600" />,
       title: "Physical Wellness",
       description: "Reclaim your body with our specialized physical wellness programs.",
-      items: ["Detox", "Weight Management", "Pain Management", "Therapeutic Yoga", "Body Cleansing"],
+      items: [
+        { title: "Detox", description: "Details about Detox" },
+        { title: "Weight Management", description: "Details about Weight Management" },
+        { title: "Chronic Pain Man", description: "Details about Chronic Pain Management" },
+        { title: "Rejuvenation", description: "Details about Rejuvenation" },
+        { title: "Anti-Aging", description: "Details about Anti-Aging" },
+        { title: "Yoga", description: "Details about Yoga" },
+        { title: "Fitness & Movement Therapy", description: "Details about Fitness & Movement Therapy" },
+        { title: "and several others", description: "Explore additional physical wellness options tailored to your needs." }
+      ],
       image: "https://images.pexels.com/photos/8795582/pexels-photo-8795582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Heart className="h-8 w-8 text-gold-600" />,
       title: "Emotional & Mental Wellness",
       description: "Heal, express, and transform your emotional landscape.",
-      items: ["Stress Management", "Anxiety & Depression Management", "Calm Mind Programme", "Trauma Relief", "Emotional Release"],
+      items: [
+        { title: "Stress Management", description: "Details about Stress Management" },
+        { title: "Emotional & Mental Health", description: "Details about Emotional & Mental Health" },
+        { title: "Sleep Enhancement", description: "Details about Sleep Enhancement" },
+        { title: "Emotional Healing & Self-Discovery", description: "Details about Emotional Healing & Self-Discovery" },
+        { title: "Art & Expressive Therapies", description: "Details about Art & Expressive Therapies" },
+        { title: "and several others", description: "Explore additional emotional and mental wellness options." }
+      ],
       image: "https://images.pexels.com/photos/9577189/pexels-photo-9577189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Shield className="h-8 w-8 text-gold-600" />,
       title: "Immune & Biological Wellness",
       description: "Empower your body's defense systems and optimize biological functions.",
-      items: ["Hormonal Balance", "Immune Boost", "Gut Healing", "Auto-immune Conditions", "Metabolic Reset"],
+      items: [
+        { title: "Hormonal Balance", description: "Details about Hormonal Balance" },
+        { title: "Women's Health", description: "Details about Women's Health" },
+        { title: "Gut Health", description: "Details about Gut Health" },
+        { title: "Integrative Diagnostics", description: "Details about Integrative Diagnostics" },
+        { title: "and several others", description: "Explore additional immune and biological wellness options." }
+      ],
       image: "https://images.pexels.com/photos/5480052/pexels-photo-5480052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Flame className="h-8 w-8 text-gold-600" />,
       title: "Spiritual Wellness",
       description: "Reunite with the sacred dimensions of your being.",
-      items: ["Spiritual Balance", "Energy Healing", "Chakra Balancing", "Rituals", "Sacred Healing"],
+      items: [
+        { title: "Connection with Nature", description: "Details about Connection with Nature" },
+        { title: "Spiritual Balance", description: "Details about Spiritual Balance" },
+        { title: "Meditation & Silence Retreats", description: "Details about Meditation & Silence Retreats" },
+        { title: "Inner Peace & Mindfulness", description: "Details about Inner Peace & Mindfulness" },
+        { title: "Sacred Rituals & Ceremonies", description: "Details about Sacred Rituals & Ceremonies" },
+        { title: "and several others", description: "Explore additional spiritual wellness options." }
+      ],
       image: "https://images.pexels.com/photos/11435059/pexels-photo-11435059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Mountain className="h-8 w-8 text-gold-600" />,
       title: "Lifestyle & Preventive Wellness",
       description: "Craft a way of life that promotes ongoing wellness and prevents disease.",
-      items: ["Corporate Wellness Programme", "Digital Detox", "Sleep Enhancement", "Lifestyle Diseases", "Anti-Aging"],
+      items: [
+        { title: "Reset Your Belief System", description: "Details about Reset Your Belief System" },
+        { title: "Attract Overall Abundance", description: "Details about Attract Overall Abundance" },
+        { title: "Manifestation", description: "Details about Manifestation" },
+        { title: "Nutrition & Healthy Eating", description: "Details about Nutrition & Healthy Eating" },
+        { title: "Sleep Hygiene", description: "Details about Sleep Hygiene" },
+        { title: "Digital Wellness", description: "Details about Digital Wellness" },
+        { title: "and several others", description: "Explore additional lifestyle and preventive wellness options." }
+      ],
       image: "https://images.pexels.com/photos/16791298/pexels-photo-16791298/free-photo-of-juice-with-drinking-straw-and-ice.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Users className="h-8 w-8 text-gold-600" />,
       title: "Social Wellness",
       description: "Building meaningful connections and healthy relationships.",
-      items: ["Couple's healing", "Family Bonding", "Social Intelligence", "Conscious Relationships", "Conscious Parenting"],
+      items: [
+        { title: "Meaningful Connections", description: "Details about Meaningful Connections" },
+        { title: "Healing Together Retreat", description: "Details about Healing Together Retreat" },
+        { title: "Mindful Parenting & Child Wellness", description: "Details about Mindful Parenting & Child Wellness" },
+        { title: "Holistic Community Practices", description: "Details about Holistic Community Practices" },
+        { title: "Heart-Centered Dialogue", description: "Details about Heart-Centered Dialogue" },
+        { title: "Purposeful Service", description: "Details about Purposeful Service" },
+        { title: "and several others", description: "Explore additional social wellness options." }
+      ],
       image: "https://images.pexels.com/photos/30318143/pexels-photo-30318143/free-photo-of-romantic-couple-with-coffee-in-vancouver-cafe.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Wind className="h-8 w-8 text-gold-600" />,
       title: "Environmental Wellness",
       description: "Let nature be your healer as you reconnect with the earth.",
-      items: ["Reflexology paths", "Forest Bathing", "Barefoot Walking", "Nature Meditation", "Garden Therapy"],
+      items: [
+        { title: "Deepens connection with the Earth", description: "Details about Deepens connection with the Earth" },
+        { title: "Reduces stress & anxiety", description: "Details about Reduces stress & anxiety" },
+        { title: "Boosts immunity", description: "Details about Boosts immunity" },
+        { title: "Promotes restful sleep", description: "Details about Promotes restful sleep" },
+        { title: "Awakens spiritual insight", description: "Details about Awakens spiritual insight" },
+        { title: "and several others", description: "Explore additional environmental wellness options." }
+      ],
       image: "https://images.pexels.com/photos/16338316/pexels-photo-16338316/free-photo-of-stream-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Briefcase className="h-8 w-8 text-gold-600" />,
       title: "Financial Wellness",
       description: "Financial wellness is feeling secure, balanced, and in control of your money.",
-      items: ["Budgeting", "Investing", "Debt Management", "Savings Plan", "Financial Literacy"],
+      items: [
+        { title: "Abundance Consciousness Workshops", description: "Details about Abundance Consciousness Workshops" },
+        { title: "Mindful Money Rituals", description: "Details about Mindful Money Rituals" },
+        { title: "Balance & Simplicity", description: "Details about Balance & Simplicity" },
+        { title: "and several others", description: "Explore additional financial wellness options." }
+      ],
       image: "https://images.pexels.com/photos/6775160/pexels-photo-6775160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     },
     {
       icon: <Briefcase className="h-8 w-8 text-gold-600" />,
       title: "Corporate Wellness",
       description: "Peak performance through holistic well-being for professionals.",
-      items: ["Stress detox for executives", "Leadership Wellness", "Team Bonding", "Performance Enhancement", "Workplace Wellness"],
+      items: [
+        { title: "Leadership Renewal Programs", description: "Details about Leadership Renewal Programs" },
+        { title: "Work-Life Synergy Workshops", description: "Details about Work-Life Synergy Workshops" },
+        { title: "Biohacking for Peak Performance", description: "Details about Biohacking for Peak Performance" },
+        { title: "Emotional Intelligence & Team Harmony", description: "Details about Emotional Intelligence & Team Harmony" },
+        { title: "Wellness Strategy Design for Entrepreneurs", description: "Details about Wellness Strategy Design for Entrepreneurs" },
+        { title: "and several others", description: "Explore additional corporate wellness options." }
+      ],
       image: "https://images.pexels.com/photos/3760069/pexels-photo-3760069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     }
   ];
@@ -88,7 +167,7 @@ const WellnessDimensions = () => {
 
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-heading text-gold-600 mb-4">
-            9 Dimensions of Transformational Wellness
+            Dimensions of Transformational Wellness
           </h2>
           <p className="text-xl text-maroon-700">
             Our holistic approach addresses every aspect of your being for complete transformation.
@@ -111,13 +190,13 @@ const WellnessDimensions = () => {
                 }
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="group relative"
+              className="group relative h-full"
             >
               {/* Card Background with Gradient Border */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
               
               {/* Card Content */}
-              <div className="relative bg-beige-100/80 backdrop-blur-sm p-6 rounded-xl shadow-lg transform transition duration-500 hover:-translate-y-1 hover:shadow-xl">
+              <div className="relative bg-beige-100/80 backdrop-blur-sm p-6 rounded-xl shadow-lg transform transition duration-500 hover:-translate-y-1 hover:shadow-xl flex flex-col h-full">
                 {/* Icon Container with Background */}
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-beige-50 flex items-center justify-center shadow-md group-hover:shadow-lg transform transition duration-500 group-hover:scale-110">
                   {dimension.icon}
@@ -134,11 +213,15 @@ const WellnessDimensions = () => {
                 </p>
 
                 {/* Items List */}
-                <ul className="space-y-2">
+                <ul className="space-y-2 flex-grow overflow-y-auto pr-2">
                   {dimension.items.map((item, idx) => (
-                    <li key={idx} className="flex items-center text-maroon-600 text-sm">
+                    <li
+                      key={idx}
+                      className="flex items-center text-maroon-600 text-sm cursor-pointer hover:text-gold-600 transition-colors duration-200"
+                      onClick={() => setSelectedItem(item)}
+                    >
                       <span className="text-gold-500 mr-2">•</span>
-                      {item}
+                      {item.title}
                     </li>
                   ))}
                 </ul>
@@ -161,6 +244,36 @@ const WellnessDimensions = () => {
           ))}
         </div>
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4"
+            onClick={() => setSelectedItem(null)} // Close modal when clicking outside
+          >
+            <motion.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 50, opacity: 0 }}
+              className="bg-white p-6 rounded-lg shadow-xl max-w-md mx-auto relative"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+            >
+              <button
+                className="absolute top-3 right-3 text-gray-600 hover:text-gray-900"
+                onClick={() => setSelectedItem(null)}
+              >
+                <X size={24} />
+              </button>
+              <h3 className="text-xl font-heading text-gold-600 mb-4">{selectedItem.title}</h3>
+              <p className="text-maroon-700">{selectedItem.description}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

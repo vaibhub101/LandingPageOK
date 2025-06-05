@@ -46,7 +46,7 @@ const Header = () => {
       <div className={`container mx-auto px-4 flex justify-between items-center transition-all duration-700 ease-out ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           <img 
             src="/omkfinal.png"
             alt="Om Kalyanam Santhigiri Logo" 
@@ -54,22 +54,30 @@ const Header = () => {
               isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
             }`}
           />
+          <img 
+            src="/60yearstrust.png"
+            alt="Trust of 60 Years"
+            className="h-12 cursor-pointer"
+            onClick={handleClick}
+          />
         </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:block">
           <ul className="flex space-x-6 items-center">
-            {["Home", "About", "Membership", "Experiences"].map((item, index) => (
+            {["Home", "Our Story", "Founder Membership", "Wellness Experiences"].map((item, index) => (
               <li key={item}>
                 <a
                   href={
-                    item === 'Experiences'
-                      ? '#special-programs'
-                      : item === 'Membership'
+                    item === 'Wellness Experiences'
+                      ? '#wellness-mandala'
+                      : item === 'Founder Membership'
                       ? '#membership-tiers'
-                      : `#${item.toLowerCase()}`
+                      : item === 'Our Story'
+                      ? '#about-om-kalyanam'
+                      : `#${item.toLowerCase().replace(' ', '-')}`
                   }
-                  className={`text-maroon-700 hover:text-gold-600 transition-all duration-500 text-sm ${
+                  className={`text-maroon-700 hover:text-gold-600 transition-all duration-500 text-sm font-bold ${
                     isVisible 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-4'
@@ -84,24 +92,13 @@ const Header = () => {
               </li>
             ))}
             <li>
-              <a
-                href="#enquiry"
-                className={`text-maroon-700 hover:text-gold-600 transition-all duration-500 text-sm ${
+              <AnimatedEnquiryButton 
+                className={`text-xs px-3 py-0.5 ${
                   isVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-4'
                 }`}
-                style={{
-                  transitionDelay: `${5 * 100}ms`,
-                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
-                }}
-                onClick={handleClick}
               >
-                Contact
-              </a>
-            </li>
-            <li>
-              <AnimatedEnquiryButton className="text-xs px-3 py-1 text-base">
                 Join Now
               </AnimatedEnquiryButton>
             </li>
@@ -121,17 +118,19 @@ const Header = () => {
       {mobileMenuOpen && (
         <nav className="md:hidden bg-beige-50/95 backdrop-blur-sm">
           <ul className="flex flex-col py-2">
-            {["Home", "About", "Membership", "Experiences"].map((item) => (
+            {["Home", "Our Story", "Founder Membership", "Wellness Experiences"].map((item) => (
               <li key={item} className="py-1.5">
                 <a
                   href={
-                    item === 'Experiences'
-                      ? '#special-programs'
-                      : item === 'Membership'
+                    item === 'Wellness Experiences'
+                      ? '#wellness-mandala'
+                      : item === 'Founder Membership'
                       ? '#membership-tiers'
-                      : `#${item.toLowerCase()}`
+                      : item === 'Our Story'
+                      ? '#about-om-kalyanam'
+                      : `#${item.toLowerCase().replace(' ', '-')}`
                   }
-                  className="block px-4 text-maroon-700 hover:text-gold-600 transition-colors duration-300 text-sm"
+                  className="block px-4 text-maroon-700 hover:text-gold-600 transition-colors duration-300 text-sm font-bold"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
@@ -139,16 +138,9 @@ const Header = () => {
               </li>
             ))}
             <li className="py-1.5">
-              <a
-                href="#enquiry"
-                className="block px-4 text-maroon-700 hover:text-gold-600 transition-colors duration-300 text-sm"
-                onClick={handleClick}
+              <AnimatedEnquiryButton 
+                className="text-xs px-3 py-0.5"
               >
-                Contact
-              </a>
-            </li>
-            <li className="py-1.5 px-4">
-              <AnimatedEnquiryButton className="text-xs px-3 py-1 w-full text-base">
                 Join Now
               </AnimatedEnquiryButton>
             </li>

@@ -25,14 +25,14 @@ const MembershipTiers = () => {
         'Complimentary spa treatments',
         'Special rates for family members'
       ],
-      // Silver gradient
-      backgroundColor: 'bg-gradient-to-br from-[#e3e3e3] via-[#f8f8f8] to-[#bdbdbd]',
-      borderColor: 'border-[#C0C0C0]',
-      highlightColor: 'text-gray-700',
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f8f8f8]/60 before:via-white/80 before:to-[#e3e3e3]/60 before:opacity-70',
-      button: 'bg-gradient-to-r from-gray-600 to-gray-700 text-white',
-      glow: 'hover:shadow-[0_0_24px_6px_rgba(192,192,192,0.5)]',
-      sparkle: 'sparkle-silver'
+      // Silver gradient - Updated
+      backgroundColor: 'bg-gradient-to-br from-[#cccccc] via-[#e3e3e3] to-[#cccccc]',
+      borderColor: 'border-[#e3e3e3]',
+      highlightColor: 'text-gray-600', // Adjusted for contrast
+      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f2f2f2]/60 before:via-white/80 before:to-[#e3e3e3]/60 before:opacity-70', // Adjusted
+      button: 'bg-gradient-to-r from-[#a3a3a3] to-[#8c8c8c] text-white', // Adjusted
+      glow: 'hover:shadow-[0_0_24px_6px_rgba(227,227,227,0.5)]', // Adjusted
+      sparkle: 'sparkle-silver' // Existing sparkle key, update CSS if needed
     },
     {
       id: 'gold',
@@ -51,15 +51,15 @@ const MembershipTiers = () => {
         'VIP event access',
         'Extended stay privileges'
       ],
-      // Gold gradient
-      backgroundColor: 'bg-gradient-to-br from-[#ffe082] via-[#ffd54f] to-[#ffb300]',
-      borderColor: 'border-[#FFD700]',
-      highlightColor: 'text-yellow-800',
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#fff8e1]/60 before:via-white/80 before:to-[#ffe082]/60 before:opacity-80',
+      // Gold gradient - Updated
+      backgroundColor: 'bg-gradient-to-br from-[#f2f0ea] via-[#e9dcc2] to-[#f2f0ea]',
+      borderColor: 'border-[#e9dcc2]',
+      highlightColor: 'text-[#b58f5a]', // Adjusted for contrast
+      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f7f5f0]/60 before:via-white/80 before:to-[#e9dcc2]/60 before:opacity-80', // Adjusted
       recommended: true,
-      button: 'bg-gradient-to-r from-yellow-600 to-yellow-700 text-white',
-      glow: 'hover:shadow-[0_0_32px_8px_rgba(255,215,0,0.5)]',
-      sparkle: 'sparkle-gold'
+      button: 'bg-gradient-to-r from-[#d4b88c] to-[#c4a87c] text-white', // Adjusted
+      glow: 'hover:shadow-[0_0_32px_8px_rgba(233,220,194,0.5)]', // Adjusted
+      sparkle: 'sparkle-gold' // Existing sparkle key, update CSS if needed
     },
     {
       id: 'platinum',
@@ -79,14 +79,14 @@ const MembershipTiers = () => {
         'Dedicated wellness concierge',
         'Custom wellness programs'
       ],
-      // Rose gold gradient
-      backgroundColor: 'bg-gradient-to-br from-[#f7cac9] via-[#ffe5d9] to-[#b76e79]',
-      borderColor: 'border-[#b76e79]',
-      highlightColor: 'text-[#b76e79]',
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#ffe5d9]/60 before:via-white/80 before:to-[#f7cac9]/60 before:opacity-70',
-      button: 'bg-gradient-to-r from-[#9a4f58] to-[#7d3f47] text-white',
-      glow: 'hover:shadow-[0_0_32px_8px_rgba(183,110,121,0.5)]',
-      sparkle: 'sparkle-rose'
+      // Platinum gradient - Updated (using E3CD9B)
+      backgroundColor: 'bg-gradient-to-br from-[#d9c58f] via-[#E3CD9B] to-[#d9c58f]',
+      borderColor: 'border-[#E3CD9B]',
+      highlightColor: 'text-[#8a7b5a]', // Adjusted for contrast
+      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f2eadc]/60 before:via-white/80 before:to-[#E3CD9B]/60 before:opacity-70', // Adjusted
+      button: 'bg-gradient-to-r from-[#b29e6b] to-[#a38e5c] text-white', // Adjusted
+      glow: 'hover:shadow-[0_0_32px_8px_rgba(227,205,155,0.5)]', // Adjusted
+      sparkle: 'sparkle-rose' // Existing sparkle key, update CSS if needed
     }
   ];
 
@@ -130,7 +130,7 @@ const MembershipTiers = () => {
           position: absolute;
           top: 10%; left: 70%;
           width: 18px; height: 18px;
-          background: radial-gradient(circle, #fff 60%, #e3e3e3 100%);
+          background: radial-gradient(circle, #ffffff 60%, #e3e3e3 100%); /* Updated */
           border-radius: 50%;
           opacity: 0.7;
           pointer-events: none;
@@ -142,7 +142,7 @@ const MembershipTiers = () => {
           position: absolute;
           top: 12%; left: 65%;
           width: 20px; height: 20px;
-          background: radial-gradient(circle, #fffbe6 60%, #ffd700 100%);
+          background: radial-gradient(circle, #ffffff 60%, #e9dcc2 100%); /* Updated */
           border-radius: 50%;
           opacity: 0.7;
           pointer-events: none;
@@ -154,7 +154,7 @@ const MembershipTiers = () => {
           position: absolute;
           top: 14%; left: 60%;
           width: 18px; height: 18px;
-          background: radial-gradient(circle, #fff 60%, #f7cac9 100%);
+          background: radial-gradient(circle, #ffffff 60%, #E3CD9B 100%); /* Updated */
           border-radius: 50%;
           opacity: 0.7;
           pointer-events: none;
@@ -203,18 +203,18 @@ const MembershipTiers = () => {
         }
 
         .btn-silver {
-          background: linear-gradient(to right, #718096, #4A5568);
-          box-shadow: 0 0 20px rgba(192,192,192,0.5);
+          background: linear-gradient(to right, #a3a3a3, #8c8c8c); /* Updated */
+          box-shadow: 0 0 20px rgba(227,227,227,0.5); /* Updated */
         }
 
         .btn-gold {
-          background: linear-gradient(to right, #D69E2E, #B7791F);
-          box-shadow: 0 0 20px rgba(255,215,0,0.5);
+          background: linear-gradient(to right, #d4b88c, #c4a87c); /* Updated */
+          box-shadow: 0 0 20px rgba(233,220,194,0.5); /* Updated */
         }
 
         .btn-platinum {
-          background: linear-gradient(to right, #9a4f58, #7d3f47);
-          box-shadow: 0 0 20px rgba(183,110,121,0.5);
+          background: linear-gradient(to right, #b29e6b, #a38e5c); /* Updated */
+          box-shadow: 0 0 20px rgba(227,205,155,0.5); /* Updated */
         }
       `}</style>
       <div className="container mx-auto px-4">
@@ -251,35 +251,35 @@ const MembershipTiers = () => {
                   }`}
                   style={{
                     backfaceVisibility: 'hidden',
-                    boxShadow: tier.recommended ? '0 8px 30px rgba(234,179,8,0.2)' : '0 4px 20px rgba(0, 0, 0, 0.1)'
+                    boxShadow: tier.recommended ? '0 8px 30px rgba(233,220,194,0.2)' : '0 4px 20px rgba(0, 0, 0, 0.1)' // Adjusted recommended shadow
                   }}
                 >
                   {tier.recommended && (
-                    <div className="absolute top-0 inset-x-0 bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-500 text-white py-2 text-base font-bold tracking-wider text-center uppercase">
+                    <div className="absolute top-0 inset-x-0 bg-gradient-to-r from-[#e9dcc2] via-[#d4b88c] to-[#e9dcc2] text-maroon-800 py-2 text-base font-bold tracking-wider text-center uppercase"> {/* Adjusted recommended ribbon color and text */}
                       Most Popular
                     </div>
                   )}
                   <div className="flex flex-col items-center p-8 pt-12 relative z-10 mb-8">
                     <img src="/bgremflower.png" alt="Tapasvi Mandala" className="w-20 h-20 mb-4" />
                     <h3 className={`font-heading text-3xl ${tier.highlightColor} mb-1 font-bold`}>{tier.name}</h3>
-                    <p className={`${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'} mb-2`}>{tier.duration}</p>
+                    <p className={`${tier.highlightColor} mb-2`}>{tier.duration}</p> {/* Simplified color class */}
                     <div className="flex justify-center items-end mb-2">
-                      <span className={`text-4xl font-heading font-bold ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.totalBaseRate}</span>
+                      <span className={`text-4xl font-heading font-bold ${tier.highlightColor}`}>{tier.totalBaseRate}</span> {/* Simplified color class */}
                     </div>
-                    <p className={`text-sm ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}`}>Base investment (excl. taxes)</p>
+                    <p className={`text-sm ${tier.highlightColor}`}>Base investment (excl. taxes)</p> {/* Simplified color class */}
                   </div>
                   <div className="space-y-4 mb-8 px-8">
-                    <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-[#b76e79] text-[#b76e79]' : 'border-maroon-200' } pb-2`}>
-                      <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}>Daily Rate:</span>
-                      <span className={`font-medium ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.baseRate}</span>
+                    <div className={`flex justify-between border-b ${tier.borderColor.replace('border', 'border-') } ${tier.highlightColor} pb-2`}> {/* Simplified color class and border color */}
+                      <span className={tier.highlightColor}>Daily Rate:</span> {/* Simplified color class */}
+                      <span className={`font-medium ${tier.highlightColor}`}>{tier.baseRate}</span> {/* Simplified color class */}
                     </div>
-                    <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-[#b76e79] text-[#b76e79]' : 'border-maroon-200' } pb-2`}>
-                      <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}>Total Nights:</span>
-                      <span className={`font-medium ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.nights}</span>
+                    <div className={`flex justify-between border-b ${tier.borderColor.replace('border', 'border-') } ${tier.highlightColor} pb-2`}> {/* Simplified color class and border color */}
+                      <span className={tier.highlightColor}>Total Nights:</span> {/* Simplified color class */}
+                      <span className={`font-medium ${tier.highlightColor}`}>{tier.nights}</span> {/* Simplified color class */}
                     </div>
-                    <div className={`flex justify-between border-b ${tier.id === 'platinum' ? 'border-[#b76e79] text-[#b76e79]' : 'border-maroon-200' } pb-2`}>
-                      <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-600'}>Room Category:</span>
-                      <span className={`font-medium ${tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}`}>{tier.roomCategory}</span>
+                    <div className={`flex justify-between border-b ${tier.borderColor.replace('border', 'border-') } ${tier.highlightColor} pb-2`}> {/* Simplified color class and border color */}
+                      <span className={tier.highlightColor}>Room Category:</span> {/* Simplified color class */}
+                      <span className={`font-medium ${tier.highlightColor}`}>{tier.roomCategory}</span> {/* Simplified color class */}
                     </div>
                   </div>
                 </div>
@@ -303,20 +303,16 @@ const MembershipTiers = () => {
                       <div className="space-y-3 mb-6">
                         {tier.benefits.map((benefit, index) => (
                           <div key={index} className="flex items-start">
-                            <span className={`${tier.highlightColor} mr-2`}>•</span>
-                            <span className={tier.id === 'platinum' ? 'text-[#b76e79]' : 'text-maroon-700'}>{benefit}</span>
+                            <span className={`${tier.highlightColor} mr-2`}>•</span> {/* Simplified color class */}
+                            <span className={tier.highlightColor}>{benefit}</span> {/* Simplified color class */}
                           </div>
                         ))}
                       </div>
                     </div>
-                    <div className="mt-12 pt-8 border-t border-gold-200">
+                    <div className="mt-12 pt-8 border-t ${tier.borderColor.replace('border', 'border-')}"> {/* Simplified border color */}
                       <div className="flex justify-center w-full">
                         <AnimatedEnquiryButton
-                          variant={
-                            tier.id === 'silver' ? 'primary' : 
-                            tier.id === 'gold' ? 'primary' : 
-                            'secondary'
-                          }
+                          variant={ 'primary' } // Using primary for all buttons for consistency
                           className="text-center"
                         >
                           Select {tier.name}

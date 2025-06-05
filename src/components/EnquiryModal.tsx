@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface EnquiryModalProps {
@@ -7,9 +7,45 @@ interface EnquiryModalProps {
 }
 
 const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onClose();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Here you would typically send the form data to your backend
+      // For now, we'll simulate a successful submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Send email to info@tapasvimandala.com
+      const mailtoLink = `mailto:info@tapasvimandala.com?subject=New Enquiry from ${formData.name}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0AMessage: ${formData.message}`;
+      window.location.href = mailtoLink;
+      
+      setSubmitStatus('success');
+      setTimeout(() => {
+        onClose();
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        setSubmitStatus('idle');
+      }, 2000);
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -30,50 +66,22 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
             className="w-full max-w-sm relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl p-6 border-2 border-gold-400 my-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <motion.div 
-              className="flex justify-center mb-4"
-              animate={{ 
-                y: [-2, 2, -2],
-                scale: [1, 1.05, 1]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-maroon-700 hover:text-gold-600 transition-colors"
             >
-              <svg
-                className="w-14 h-14 text-gold-600 drop-shadow-lg transition-all"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <motion.path
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 1
-                  }}
-                  d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <motion.path
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{
-                    duration: 1,
-                    delay: 0.5,
-                    repeat: Infinity,
-                    repeatDelay: 2
-                  }}
-                  d="M7.5 9.75C7.5 9.33579 7.83579 9 8.25 9H15.75C16.1642 9 16.5 9.33579 16.5 9.75V14.25C16.5 14.6642 16.1642 15 15.75 15H8.25C7.83579 15 7.5 14.6642 7.5 14.25V9.75Z"
-                  fill="currentColor"
-                />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            <motion.div
+              className="absolute -top-12 left-1/2 transform -translate-x-1/2"
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <motion.path
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -102,6 +110,8 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                   type="text"
                   id="name"
                   required
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-xl bg-white/80 border border-gold-200 focus:ring-1 focus:ring-gold-500 focus:border-transparent outline-none transition-all"
                   placeholder="Enter your name"
                 />
@@ -115,6 +125,8 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                   type="email"
                   id="email"
                   required
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-xl bg-white/80 border border-gold-200 focus:ring-1 focus:ring-gold-500 focus:border-transparent outline-none transition-all"
                   placeholder="Enter your email"
                 />
@@ -128,6 +140,8 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                   type="tel"
                   id="phone"
                   required
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-xl bg-white/80 border border-gold-200 focus:ring-1 focus:ring-gold-500 focus:border-transparent outline-none transition-all"
                   placeholder="Enter your phone number"
                 />
@@ -140,6 +154,8 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                 <textarea
                   id="message"
                   rows={2}
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded-xl bg-white/80 border border-gold-200 focus:ring-1 focus:ring-gold-500 focus:border-transparent outline-none transition-all resize-none"
                   placeholder="Enter your message"
                 />
@@ -147,12 +163,21 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
               <motion.button
                 type="submit"
+                disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-2 bg-gold-600 text-white rounded-xl font-medium transition-all hover:bg-gold-700 mt-3"
+                className={`w-full py-2 bg-gold-600 text-white rounded-xl font-medium transition-all hover:bg-gold-700 mt-3 ${
+                  isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                }`}
               >
-                Submit
+                {isSubmitting ? 'Sending...' : submitStatus === 'success' ? 'Sent!' : 'Submit'}
               </motion.button>
+
+              {submitStatus === 'error' && (
+                <p className="text-red-500 text-sm text-center mt-2">
+                  Failed to send message. Please try again.
+                </p>
+              )}
             </form>
           </motion.div>
         </motion.div>
