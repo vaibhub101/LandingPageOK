@@ -192,7 +192,7 @@ const WellnessMandala = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-beige-50 to-beige-100 relative overflow-hidden">
+    <section id="wellness-mandala" className="py-20 bg-gradient-to-b from-beige-50 to-beige-100 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,theme(colors.maroon.100/0.1),transparent_70%)] pointer-events-none"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,theme(colors.gold.500/0.1),transparent_70%)] pointer-events-none"></div>
 

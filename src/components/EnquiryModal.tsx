@@ -27,21 +27,38 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     setSubmitStatus('idle');
 
     try {
-      // Here you would typically send the form data to your backend
-      // For now, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Send email to info@tapasvimandala.com
-      const mailtoLink = `mailto:info@tapasvimandala.com?subject=New Enquiry from ${formData.name}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0AMessage: ${formData.message}`;
-      window.location.href = mailtoLink;
-      
-      setSubmitStatus('success');
-      setTimeout(() => {
-        onClose();
-        setFormData({ name: '', email: '', phone: '', message: '' });
-        setSubmitStatus('idle');
-      }, 2000);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'e42b7f98-f7df-44cd-94d9-c2238a8d5833', // Replace with your Web3Forms access key
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          subject: 'New Enquiry from Website',
+          from_name: formData.name,
+          reply_to: formData.email
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setTimeout(() => {
+          onClose();
+          setFormData({ name: '', email: '', phone: '', message: '' });
+          setSubmitStatus('idle');
+        }, 2000);
+      } else {
+        throw new Error(result.message || 'Failed to send message');
+      }
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

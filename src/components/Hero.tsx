@@ -16,8 +16,8 @@ const slides = [
   },
   {
     type: 'image',
-    src: 'https://images.pexels.com/photos/31901560/pexels-photo-31901560.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    alt: 'Authentic ritual setting',
+    src: (isMobile: boolean) => isMobile ? '/Heroimage.png' : 'https://images.pexels.com/photos/31901560/pexels-photo-31901560.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    alt: 'Group of people smiling',
     heading: 'Founders of the Sacred Path',
     subheading: 'Om Kalyanam Santhigiri',
     description:
@@ -39,6 +39,16 @@ const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const { openEnquiryModal } = useEnquiryModal();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,50 +73,29 @@ const Hero = () => {
       {/* Carousel */}
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
-          <div
+          <motion.div
             key={index}
-            className={`absolute inset-0 transition-all duration-300 ease-in-out transform ${
-              activeSlide === index
-                ? 'opacity-100 translate-x-0 z-10'
-                : 'opacity-0 translate-x-full z-0'
-            } ${isTransitioning ? 'bg-beige-100' : ''}`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${activeSlide === index ? 'opacity-100' : 'opacity-0'}`}
           >
-            <div className="w-full h-full flex items-center justify-center overflow-hidden">
-              {slide.type === 'video' ? (
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  className={`w-full h-full ${
-                    isTransitioning ? 'opacity-0' : 'opacity-100'
-                  } object-cover transition-opacity duration-300`}
-                >
-                  <source src={slide.src} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <div className="relative w-full h-full">
-                  <img
-                    src={slide.src}
-                    alt={slide.alt}
-                    className={`absolute w-full h-full ${
-                      isTransitioning ? 'opacity-0' : 'opacity-100'
-                    } object-cover transition-opacity duration-300 transform-gpu scale-100 md:scale-100`}
-                    style={{
-                      objectPosition: 'center center',
-                      objectFit: 'cover',
-                      width: '100%',
-                      height: '100%'
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+            {slide.type === 'video' ? (
+              <video
+                src={slide.src as string}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <img
+                src={typeof slide.src === 'function' ? slide.src(isMobile) : slide.src}
+                alt={slide.alt}
+                className={`object-cover ${isMobile && index === 1 ? 'w-[384px] h-[642px] mx-auto' : 'w-full h-full'}`}
+              />
+            )}
+            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          </motion.div>
         ))}
-
-        {/* Overlay - Using beige gradient for consistency */}
-        <div className="absolute inset-0 bg-gradient-to-t from-beige-900/80 via-beige-800/40 to-transparent z-20"></div>
       </div>
 
       {/* Carousel Indicators */}
@@ -146,16 +135,15 @@ const Hero = () => {
       </div>
 
       {/* Scroll Down Indicator */}
-      <button
-        onClick={scrollToNext}
-        className="absolute bottom-8 right-8 z-30 p-4 text-earth-100/50 hover:text-earth-100 transition-all duration-300 animate-bounce hover:animate-none group"
-        aria-label="Scroll to next section"
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
       >
-        <ChevronDown
-          size={32}
-          className="transform group-hover:scale-110 transition-transform duration-300"
-        />
-      </button>
+        <a href="#about-om-kalyanam" className="text-gold-600 hover:text-gold-700 transition-colors duration-300">
+          <ChevronDown size={32} />
+        </a>
+      </motion.div>
     </section>
   );
 };

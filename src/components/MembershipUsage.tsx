@@ -31,7 +31,6 @@ const MembershipUsage = () => {
         { title: 'Laundry for resort-provided garments', description: 'Placeholder description' },
         { title: 'Doctor-prescribed additional therapies available at special discounted rates.', description: 'Placeholder description' },
         { title: 'Enjoy special rates on our modern and signature therapies.', description: 'Placeholder description' },
-        { title: 'and many more', description: 'Explore additional inclusions.' }
       ]
     },
     {
@@ -41,7 +40,6 @@ const MembershipUsage = () => {
         { title: 'Nights are valid throughout your membership duration.', description: 'Placeholder description' },
         { title: 'You may use your nights in parts or all at once, as per your convenience.', description: 'Placeholder description' },
         { title: 'Each visit allows 2 adults to access the retreat and its core services.', description: 'Placeholder description' },
-        { title: 'and many more', description: 'Explore additional Stay and Access details.' }
       ]
     },
     {
@@ -51,7 +49,6 @@ const MembershipUsage = () => {
         { title: 'You may gift or share your nights with friends, family, or other', description: 'Placeholder description' },
         { title: 'Gifting includes all core inclusions (meals, therapies, yoga, meditation, nature experiences).', description: 'Placeholder description' },
         { title: 'A confirmation email must be sent from the registered email ID, along with a valid government ID of the guest.', description: 'Placeholder description' },
-        { title: 'and many more', description: 'Explore additional Gifting and Sharing details.' }
       ]
     },
     {
@@ -60,7 +57,6 @@ const MembershipUsage = () => {
       items: [
         { title: 'Book your stay in advance through our Reservation Team', description: 'Placeholder description' },
         { title: 'Subject to availability; early bookings recommended for peak seasons.', description: 'Placeholder description' },
-        { title: 'and many more', description: 'Explore additional booking details.' }
       ]
     }
   ];

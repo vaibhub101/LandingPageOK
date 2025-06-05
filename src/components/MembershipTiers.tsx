@@ -25,14 +25,10 @@ const MembershipTiers = () => {
         'Complimentary spa treatments',
         'Special rates for family members'
       ],
-      // Silver gradient - Updated
-      backgroundColor: 'bg-gradient-to-br from-[#cccccc] via-[#e3e3e3] to-[#cccccc]',
-      borderColor: 'border-[#e3e3e3]',
-      highlightColor: 'text-gray-600', // Adjusted for contrast
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f2f2f2]/60 before:via-white/80 before:to-[#e3e3e3]/60 before:opacity-70', // Adjusted
-      button: 'bg-gradient-to-r from-[#a3a3a3] to-[#8c8c8c] text-white', // Adjusted
-      glow: 'hover:shadow-[0_0_24px_6px_rgba(227,227,227,0.5)]', // Adjusted
-      sparkle: 'sparkle-silver' // Existing sparkle key, update CSS if needed
+      // Silver solid background color
+      backgroundColor: 'bg-[#e4e4e4]', // Updated to HEX #e4e4e4
+      borderColor: 'border-gray-400', // Changed to a standard border color
+      highlightColor: 'text-gray-800', // Changed to a readable dark text color
     },
     {
       id: 'gold',
@@ -51,15 +47,11 @@ const MembershipTiers = () => {
         'VIP event access',
         'Extended stay privileges'
       ],
-      // Gold gradient - Updated
-      backgroundColor: 'bg-gradient-to-br from-[#f2f0ea] via-[#e9dcc2] to-[#f2f0ea]',
-      borderColor: 'border-[#e9dcc2]',
-      highlightColor: 'text-[#b58f5a]', // Adjusted for contrast
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f7f5f0]/60 before:via-white/80 before:to-[#e9dcc2]/60 before:opacity-80', // Adjusted
+      // Gold solid background color
+      backgroundColor: 'bg-[#d8b86f]', // Updated to HEX #d8b86f
+      borderColor: 'border-yellow-700', // Changed to a standard border color that fits
+      highlightColor: 'text-maroon-800', // Changed to a readable dark text color
       recommended: true,
-      button: 'bg-gradient-to-r from-[#d4b88c] to-[#c4a87c] text-white', // Adjusted
-      glow: 'hover:shadow-[0_0_32px_8px_rgba(233,220,194,0.5)]', // Adjusted
-      sparkle: 'sparkle-gold' // Existing sparkle key, update CSS if needed
     },
     {
       id: 'platinum',
@@ -79,14 +71,10 @@ const MembershipTiers = () => {
         'Dedicated wellness concierge',
         'Custom wellness programs'
       ],
-      // Platinum gradient - Updated (using E3CD9B)
-      backgroundColor: 'bg-gradient-to-br from-[#d9c58f] via-[#E3CD9B] to-[#d9c58f]',
-      borderColor: 'border-[#E3CD9B]',
-      highlightColor: 'text-[#8a7b5a]', // Adjusted for contrast
-      metallic: 'before:absolute before:inset-0 before:bg-gradient-to-t before:from-[#f2eadc]/60 before:via-white/80 before:to-[#E3CD9B]/60 before:opacity-70', // Adjusted
-      button: 'bg-gradient-to-r from-[#b29e6b] to-[#a38e5c] text-white', // Adjusted
-      glow: 'hover:shadow-[0_0_32px_8px_rgba(227,205,155,0.5)]', // Adjusted
-      sparkle: 'sparkle-rose' // Existing sparkle key, update CSS if needed
+      // Platinum solid background color
+      backgroundColor: 'bg-[#b9b9b9]', // Updated to HEX #b9b9b9
+      borderColor: 'border-gray-500', // Changed to a standard border color
+      highlightColor: 'text-gray-800', // Changed to a readable dark text color
     }
   ];
 
@@ -102,121 +90,6 @@ const MembershipTiers = () => {
 
   return (
     <section id="membership-tiers" className="py-20 bg-gradient-to-b from-beige-50 to-beige-100">
-      <style>{`
-        @keyframes sparkle {
-          0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
-          50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
-          100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
-        }
-
-        @keyframes pulse-glow {
-          0% { box-shadow: 0 0 15px rgba(255,255,255,0.5), 0 0 25px currentColor, 0 0 35px currentColor; }
-          50% { box-shadow: 0 0 25px rgba(255,255,255,0.5), 0 0 35px currentColor, 0 0 55px currentColor; }
-          100% { box-shadow: 0 0 15px rgba(255,255,255,0.5), 0 0 25px currentColor, 0 0 35px currentColor; }
-        }
-
-        @keyframes shine {
-          0% { background-position: -100% 0; }
-          100% { background-position: 200% 0; }
-        }
-
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-
-        .sparkle-silver::after {
-          content: '';
-          position: absolute;
-          top: 10%; left: 70%;
-          width: 18px; height: 18px;
-          background: radial-gradient(circle, #ffffff 60%, #e3e3e3 100%); /* Updated */
-          border-radius: 50%;
-          opacity: 0.7;
-          pointer-events: none;
-          animation: sparkle 1.2s infinite;
-          filter: blur(1px);
-        }
-        .sparkle-gold::after {
-          content: '';
-          position: absolute;
-          top: 12%; left: 65%;
-          width: 20px; height: 20px;
-          background: radial-gradient(circle, #ffffff 60%, #e9dcc2 100%); /* Updated */
-          border-radius: 50%;
-          opacity: 0.7;
-          pointer-events: none;
-          animation: sparkle 1.2s infinite;
-          filter: blur(1px);
-        }
-        .sparkle-rose::after {
-          content: '';
-          position: absolute;
-          top: 14%; left: 60%;
-          width: 18px; height: 18px;
-          background: radial-gradient(circle, #ffffff 60%, #E3CD9B 100%); /* Updated */
-          border-radius: 50%;
-          opacity: 0.7;
-          pointer-events: none;
-          animation: sparkle 1.2s infinite;
-          filter: blur(1px);
-        }
-
-        .membership-button {
-          transform: perspective(1000px) translateZ(0);
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-          font-weight: bold;
-          letter-spacing: 0.5px;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-          padding: 1rem 2rem;
-          border-radius: 9999px;
-        }
-
-        .membership-button::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to right, rgba(255,255,255,0.2), transparent);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .membership-button:hover::before {
-          opacity: 1;
-        }
-
-        .membership-button:hover {
-          transform: perspective(1000px) translateZ(20px) translateY(-5px);
-        }
-
-        .membership-button:active {
-          transform: perspective(1000px) translateZ(10px) translateY(0);
-        }
-
-        .btn-silver, .btn-gold, .btn-platinum {
-          color: white;
-          font-weight: 800;
-          letter-spacing: 0.5px;
-          animation: float 3s infinite ease-in-out;
-        }
-
-        .btn-silver {
-          background: linear-gradient(to right, #a3a3a3, #8c8c8c); /* Updated */
-          box-shadow: 0 0 20px rgba(227,227,227,0.5); /* Updated */
-        }
-
-        .btn-gold {
-          background: linear-gradient(to right, #d4b88c, #c4a87c); /* Updated */
-          box-shadow: 0 0 20px rgba(233,220,194,0.5); /* Updated */
-        }
-
-        .btn-platinum {
-          background: linear-gradient(to right, #b29e6b, #a38e5c); /* Updated */
-          box-shadow: 0 0 20px rgba(227,205,155,0.5); /* Updated */
-        }
-      `}</style>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="font-heading text-3xl md:text-4xl mb-4 text-gold-600">TAPASVI MANDALA ROYAL FOUNDER MEMBERSHIP</h2>
@@ -246,40 +119,40 @@ const MembershipTiers = () => {
               >
                 {/* Front of card */}
                 <div
-                  className={`absolute inset-0 rounded-xl overflow-hidden border-2 ${tier.borderColor} ${tier.backgroundColor} ${tier.metallic} relative ${
+                  className={`absolute inset-0 rounded-xl overflow-hidden border-2 ${tier.borderColor} ${tier.backgroundColor} relative ${
                     tier.recommended ? 'transform md:-translate-y-4' : ''
                   }`}
                   style={{
                     backfaceVisibility: 'hidden',
-                    boxShadow: tier.recommended ? '0 8px 30px rgba(233,220,194,0.2)' : '0 4px 20px rgba(0, 0, 0, 0.1)' // Adjusted recommended shadow
+                    boxShadow: tier.recommended ? '0 8px 30px rgba(233,220,194,0.2)' : '0 4px 20px rgba(0, 0, 0, 0.1)'
                   }}
                 >
                   {tier.recommended && (
-                    <div className="absolute top-0 inset-x-0 bg-gradient-to-r from-[#e9dcc2] via-[#d4b88c] to-[#e9dcc2] text-maroon-800 py-2 text-base font-bold tracking-wider text-center uppercase"> {/* Adjusted recommended ribbon color and text */}
+                    <div className="absolute top-0 inset-x-0 bg-gradient-to-r from-[#e9dcc2] via-[#d4b88c] to-[#e9dcc2] text-maroon-800 py-2 text-base font-bold tracking-wider text-center uppercase">
                       Most Popular
                     </div>
                   )}
                   <div className="flex flex-col items-center p-8 pt-12 relative z-10 mb-8">
                     <img src="/bgremflower.png" alt="Tapasvi Mandala" className="w-20 h-20 mb-4" />
                     <h3 className={`font-heading text-3xl ${tier.highlightColor} mb-1 font-bold`}>{tier.name}</h3>
-                    <p className={`${tier.highlightColor} mb-2`}>{tier.duration}</p> {/* Simplified color class */}
+                    <p className={tier.highlightColor}>{tier.duration}</p>
                     <div className="flex justify-center items-end mb-2">
-                      <span className={`text-4xl font-heading font-bold ${tier.highlightColor}`}>{tier.totalBaseRate}</span> {/* Simplified color class */}
+                      <span className={`text-4xl font-heading font-bold ${tier.highlightColor}`}>{tier.totalBaseRate}</span>
                     </div>
-                    <p className={`text-sm ${tier.highlightColor}`}>Base investment (excl. taxes)</p> {/* Simplified color class */}
+                    <p className={`text-sm ${tier.highlightColor}`}>Base investment (excl. taxes)</p>
                   </div>
                   <div className="space-y-4 mb-8 px-8">
-                    <div className={`flex justify-between border-b ${tier.borderColor.replace('border', 'border-') } ${tier.highlightColor} pb-2`}> {/* Simplified color class and border color */}
-                      <span className={tier.highlightColor}>Daily Rate:</span> {/* Simplified color class */}
-                      <span className={`font-medium ${tier.highlightColor}`}>{tier.baseRate}</span> {/* Simplified color class */}
+                    <div className={`flex justify-between border-b ${tier.borderColor} ${tier.highlightColor} pb-2`}>
+                      <span className={tier.highlightColor}>Daily Rate:</span>
+                      <span className={`font-medium ${tier.highlightColor}`}>{tier.baseRate}</span>
                     </div>
-                    <div className={`flex justify-between border-b ${tier.borderColor.replace('border', 'border-') } ${tier.highlightColor} pb-2`}> {/* Simplified color class and border color */}
-                      <span className={tier.highlightColor}>Total Nights:</span> {/* Simplified color class */}
-                      <span className={`font-medium ${tier.highlightColor}`}>{tier.nights}</span> {/* Simplified color class */}
+                    <div className={`flex justify-between border-b ${tier.borderColor} ${tier.highlightColor} pb-2`}>
+                      <span className={tier.highlightColor}>Total Nights:</span>
+                      <span className={`font-medium ${tier.highlightColor}`}>{tier.nights}</span>
                     </div>
-                    <div className={`flex justify-between border-b ${tier.borderColor.replace('border', 'border-') } ${tier.highlightColor} pb-2`}> {/* Simplified color class and border color */}
-                      <span className={tier.highlightColor}>Room Category:</span> {/* Simplified color class */}
-                      <span className={`font-medium ${tier.highlightColor}`}>{tier.roomCategory}</span> {/* Simplified color class */}
+                    <div className={`flex justify-between border-b ${tier.borderColor} ${tier.highlightColor} pb-2`}>
+                      <span className={tier.highlightColor}>Room Category:</span>
+                      <span className={`font-medium ${tier.highlightColor}`}>{tier.roomCategory}</span>
                     </div>
                   </div>
                 </div>
@@ -303,16 +176,16 @@ const MembershipTiers = () => {
                       <div className="space-y-3 mb-6">
                         {tier.benefits.map((benefit, index) => (
                           <div key={index} className="flex items-start">
-                            <span className={`${tier.highlightColor} mr-2`}>•</span> {/* Simplified color class */}
-                            <span className={tier.highlightColor}>{benefit}</span> {/* Simplified color class */}
+                            <span className={tier.highlightColor}>•</span>
+                            <span className={tier.highlightColor}>{benefit}</span>
                           </div>
                         ))}
                       </div>
                     </div>
-                    <div className="mt-12 pt-8 border-t ${tier.borderColor.replace('border', 'border-')}"> {/* Simplified border color */}
+                    <div className={`mt-12 pt-8 border-t ${tier.borderColor}`}>
                       <div className="flex justify-center w-full">
                         <AnimatedEnquiryButton
-                          variant={ 'primary' } // Using primary for all buttons for consistency
+                          variant={ 'primary' }
                           className="text-center"
                         >
                           Select {tier.name}
